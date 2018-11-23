@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2018-11-22
+  end_date: 2018-11-22
+  weekly_working_hours: 1
+  work_tasks: MyString
+  learning_goals: MyString
+  other_comments: MyString
+  contract: one
+
+two:
+  start_date: 2018-11-22
+  end_date: 2018-11-22
+  weekly_working_hours: 1
+  work_tasks: MyString
+  learning_goals: MyString
+  other_comments: MyString
+  contract: two
