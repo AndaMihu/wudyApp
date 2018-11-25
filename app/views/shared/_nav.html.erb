@@ -1,0 +1,51 @@
+<header>
+    <%= link_to "Back", root_path %>
+    
+    <button id="hamburger" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button> 
+
+    <nav aria-role="navigation">
+        <ul>
+            <li>
+                <span>01</span>
+                <h1>
+                    <%= link_to "Dashboard", student_dashboard_path %>
+                </h1>
+            </li>
+            <li>
+                <span>02</span>
+                <h1>
+                    <%= link_to "My internship coach", root_path %>
+                </h1>
+            </li>
+            <li>
+                <span>03</span>
+                <h1>
+                    <%= link_to "Contract", contract_index_path %>
+                </h1>
+            </li>
+            <li>
+                <span>04</span>
+                <h1>
+                    <%= link_to "Companies list", companies_path %>
+                </h1>
+            </li>
+             <li>
+                <span>05</span>
+                <h1>
+                    <%= link_to "My profile", my_profile_index_path %>
+                </h1>
+            </li>
+            <br>
+
+            <li class="logout">
+                <%= link_to destroy_teacher_session_path, method: :delete do %>
+                    Log ud
+                <%end%>
+            </li>
+        </ul>
+    </nav>
+</header>

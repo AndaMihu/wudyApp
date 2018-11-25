@@ -1,0 +1,11 @@
+<%= form_for :contract, url: contract_index_path(@contract), action: :create, method: :post  do |form| %>
+        
+
+<%= form.text_field :contact_language, placeholder: "Language" %>
+
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+

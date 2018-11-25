@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_185010) do
+ActiveRecord::Schema.define(version: 2018_11_25_191936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
     t.bigint "industry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cvr"
+    t.string "company_address"
+    t.integer "zip_code"
+    t.string "country"
+    t.string "internship_address"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
 
@@ -49,20 +54,30 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mobile_phone"
     t.index ["company_id"], name: "index_company_users_on_company_id"
     t.index ["email"], name: "index_company_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_company_users_on_reset_password_token", unique: true
   end
 
+  create_table "contact_languages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contracts", force: :cascade do |t|
     t.boolean "is_accepted"
-    t.string "contact_language"
     t.bigint "teacher_id"
     t.bigint "student_id"
     t.bigint "company_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "internship_type_id"
+    t.bigint "contact_language_id"
     t.index ["company_user_id"], name: "index_contracts_on_company_user_id"
+    t.index ["contact_language_id"], name: "index_contracts_on_contact_language_id"
+    t.index ["internship_type_id"], name: "index_contracts_on_internship_type_id"
     t.index ["student_id"], name: "index_contracts_on_student_id"
     t.index ["teacher_id"], name: "index_contracts_on_teacher_id"
   end
@@ -104,6 +119,12 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
     t.index ["teacher_id"], name: "index_internship_coaches_on_teacher_id"
   end
 
+  create_table "internship_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.bigint "student_id"
     t.bigint "teacher_id"
@@ -120,6 +141,8 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_positions_on_company_id"
   end
 
   create_table "programmes", force: :cascade do |t|
@@ -196,6 +219,11 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
     t.index ["university_id"], name: "index_teachers_on_university_id"
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "universities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -206,6 +234,8 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"
   add_foreign_key "contracts", "company_users"
+  add_foreign_key "contracts", "contact_languages"
+  add_foreign_key "contracts", "internship_types"
   add_foreign_key "contracts", "students"
   add_foreign_key "contracts", "teachers"
   add_foreign_key "daily_goals", "students"
@@ -214,6 +244,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_185010) do
   add_foreign_key "internship_coaches", "teachers"
   add_foreign_key "meetings", "students"
   add_foreign_key "meetings", "teachers"
+  add_foreign_key "positions", "companies"
   add_foreign_key "programmes", "universities"
   add_foreign_key "project_timelines", "companies"
   add_foreign_key "tasks", "project_timelines"

@@ -1,0 +1,42 @@
+body.register,
+body.login,
+body.password,
+body.employees {
+  main {
+    form {
+      width: 100%;
+    }
+    h2 {
+      // margin-bottom: 50px;
+      &.accent-title {
+        @extend %categoryTitle;
+        margin-bottom: 0;
+      }
+    }
+    input[type="submit"] {
+      font-size: 15px;
+      margin-top: 15px;
+      @extend %font;
+      @extend %fontMedium;
+      cursor: pointer;
+    }
+    .links {
+      font-size: 14px;
+      margin-top: 50px;
+      opacity: 0.7;
+      a {
+        text-decoration: underline;
+      }
+      p {
+        margin-top: 10px;
+      }
+    }
+    .remember-me {
+      margin-top: 10px;
+      font-size: 14px;
+      label {
+        opacity: 0.7;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<% @companies.each do |company| %>
+    <div class="single-employee row">
+      <div class="info col-xs-8 col-sm-10">
+        
+        <%= link_to company.name, company %> 
+        <p class="name"><%= @positions.name %></p>
+        <p class="spots"> <%= company.available_spots %></p>
+        <p class="industry"> <%= @industry.name %></p>
+        <p class="location"> <%= company.location %></p>
+    
+      </div>
+    </div>
+    <% end %>

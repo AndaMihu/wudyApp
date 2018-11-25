@@ -1,0 +1,20 @@
+<%= form_for :student, url: my_profile_update_path(@student), action: :update, method: :patch  do |form| %>
+  
+
+  <div class="field">
+    <%= form.text_field :name, placeholder: "Name" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :education, placeholder: "Education" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :work_experience, placeholder: "Work experience"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+        

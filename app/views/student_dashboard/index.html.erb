@@ -1,0 +1,7 @@
+<% if current_student.company_id.nil? %>
+<h1> no </h1> redirect to companies list
+<% else %> 
+<h1> yes </h1> show project timeline
+<% end %>
+
+<%= current_student.inspect %>

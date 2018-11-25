@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+$max-width: 800px;
+body {
+  @extend %font; // background-color: $secondary-color;
+  color: $dark-blue;
+  text-align: center; // padding: 0 !important;
+  position: relative;
+  height: 100vh; // overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: $light_grey;
+  // background: -webkit-linear-gradient(
+  //   left,
+  //   #222222 1%,
+  //   #151515 50%,
+  //   #222222 95%
+  // );
+  // background: -webkit-gradient(
+  //   linear,
+  //   left top,
+  //   right top,
+  //   color-stop(1%, #222222),
+  //   color-stop(50%, #151515),
+  //   color-stop(95%, #222222)
+  // );
+  // background: -webkit-linear-gradient(
+  //   left,
+  //   #222222 1%,
+  //   #151515 50%,
+  //   #222222 95%
+  // );
+  // background: -o-linear-gradient(left, #222222 1%, #151515 50%, #222222 95%);
+  // background: linear-gradient(to right, #222222 1%, #151515 50%, #222222 95%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#222222', GradientType=1); // padding: 0 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  header {
+    max-width: $max-width;
+    position: relative;
+    width: 100%;
+    //background-color: $header-color; // -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+    // -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+    // box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+  }
+  main {
+    padding: $main-padding $padding;
+
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
+
+    flex-grow: 2;
+    max-width: $max-width;
+    width: 100%;
+    //background-color: $primary-color; // -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+    // -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+    // box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.2);
+    position: relative;
+    #contact {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      color: $input-light-gray;
+      opacity: 0.3;
+      @extend %fontLight;
+      font-size: 14px;
+    }
+    h2 {
+      @extend %fontMedium;
+    }
+  }
+}
+
+.backBtn {
+  visibility: hidden;
+}
+
+#tryAgain {
+  @extend %button;
+}
