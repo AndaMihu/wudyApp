@@ -1,0 +1,163 @@
+$margin: 5px;
+%form-elements {
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 15px; // margin: 0 $margin;
+  // width: calc(100% - #{2*$margin});
+  width: 100%;
+  font-size: 15px;
+  max-width: 360px;
+}
+
+%placeholder {
+  font-family: "Nationale";
+  font-weight: 200;
+}
+
+%input {
+  background-color: $input-background-color;
+  color: $input-light-gray;
+  margin-bottom: 15px;
+  &:focus {
+    outline: 0;
+    border: 1px solid $input-light-gray;
+    background-color: $input-background-color;
+    color: $input-light-gray;
+    margin-bottom: 15px;
+    &:focus {
+      outline: 0;
+      border: 1px solid $input-light-gray;
+      background-color: $input-background-color;
+      color: $input-light-gray;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      &::-webkit-input-placeholder {
+        opacity: 0.8;
+      }
+      &:-ms-input-placeholder {
+        opacity: 0.8;
+      }
+      &::-ms-input-placeholder {
+        opacity: 0.8;
+      }
+      &::placeholder {
+        opacity: 0.8;
+      }
+    }
+    &::-webkit-input-placeholder {
+      opacity: 0.8;
+    }
+    &:-ms-input-placeholder {
+      opacity: 0.8;
+    }
+    &::-ms-input-placeholder {
+      opacity: 0.8;
+    }
+    &::placeholder {
+      opacity: 0.8;
+    }
+  }
+  &::-webkit-input-placeholder {
+    opacity: 0.5;
+  }
+  &:-ms-input-placeholder {
+    opacity: 0.5;
+  }
+  &::-ms-input-placeholder {
+    @extend %placeholder;
+    opacity: 0.5;
+  }
+  &::placeholder {
+    @extend %placeholder;
+    opacity: 0.5;
+  }
+}
+
+.form-headline {
+  margin-bottom: 40px;
+  font-size: 24px;
+  @extend %fontMedium;
+}
+
+.form-links {
+  font-size: 14px;
+  margin-top: 50px;
+  opacity: 0.7;
+  a {
+    text-decoration: underline;
+  }
+  p {
+    margin-top: 10px;
+  }
+}
+
+.select-wrapper {
+  .select-button {
+    @extend %form-elements;
+    @extend %input;
+    border: 1px solid transparentize($input-light-gray, 0.9);
+    width: 100%;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+
+    &::after {
+      content: "\2228";
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      right: 10px;
+      opacity: 0.5;
+    }
+    &:hover {
+      &::after {
+        opacity: 0.9;
+      }
+    }
+  }
+  ul {
+    display: none;
+    margin: -15px auto 0 auto;
+    @extend %input;
+    @extend %form-elements;
+    background-color: $deactivate;
+    padding: 0;
+    border-radius: 0 0 2px 2px;
+    li {
+      text-align: left;
+      padding: 15px;
+      list-style: none;
+      border-bottom: 1px solid transparentize($input-light-gray, 0.9);
+      // border-radius: 0;
+      // margin: 0;
+      cursor: pointer;
+      -webkit-transition: 150ms background-color ease;
+      -o-transition: 150ms background-color ease;
+      transition: 150ms background-color ease;
+      &:hover {
+        background-color: $input-background-color;
+      }
+      &:last-of-type {
+        border: 0;
+      }
+    }
+    &.expanded {
+      display: block;
+    }
+  }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  @extend %form-elements;
+  @extend %input;
+}
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  @extend %button;
+}

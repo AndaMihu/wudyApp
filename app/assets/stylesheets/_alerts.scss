@@ -1,0 +1,27 @@
+.alert {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: transparentize($accent-color, 0.5);
+  text-align: left;
+  &.alert-error {
+    background-color: transparentize(red, 0.8);
+  }
+  &.alert-alert {
+    background-color: transparentize(red, 0.8);
+  }
+  li {
+    list-style: none;
+  }
+  a.close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}

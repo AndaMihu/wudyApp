@@ -1,0 +1,14 @@
+<h1>hallo</h1>
+
+
+<div class="single-employee row">
+      <div class="info col-xs-8 col-sm-10">
+        <p class="name"><%= current_student.name %></p>
+        <p class="email"><%= current_student.email %></p>
+        <p class="mobile"><%= current_student.mobile_phone %></p>
+        <p class="education"> <%= current_student.education %></p>
+        <p class="work_experience"> <%= current_student.work_experience %></p>
+
+</div>
+       
+<%= link_to 'Edit profile', edit_my_profile_path(current_student), :class => "editBtn" %> 

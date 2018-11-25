@@ -1,0 +1,2 @@
+class ContactLanguage < ApplicationRecord
+end
