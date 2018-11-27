@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  has_one :programme
   has_one :contract
   accepts_nested_attributes_for :contract
 

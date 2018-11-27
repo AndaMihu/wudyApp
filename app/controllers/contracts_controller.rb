@@ -6,11 +6,17 @@ class ContractsController < ApplicationController
   def index
    @contracts = Contract.all
 
-  @contracts_all = Contract.find_by(student_id: current_student.id)
+   @contracts_all = Contract.find_by(student_id: current_student.id)
     if @contracts_all.nil?
        redirect_to new_contract_path
     else 
 
+    #get me all the programmes that have the same university id as the user
+
+
+    
+
+    
    end
   
   #@agreement = InternshipAgreement.includes(:internship_agreemenet).where(:internship_agreemenet => {contract_id: current_student.contratct_id}).first
@@ -26,7 +32,20 @@ class ContractsController < ApplicationController
 
   # GET /contracts/new
   def new
+    #@uni_id = University.where()
+    #get all programms that have the same university_id as the current_student programme
+    #@pr = Programme.joins(:university).where(:university_id => {university_id: current_student.programme_id})
+    #@uni = University.joins(:programmes)
+
+    #@pr = Programme.joins(:university).where(university_id: 1)
+
+    @programmes = Programme.all
+
     @contract = Contract.new
+
+    @contact_language = ContactLanguage.all
+
+    @internship_type = InternshipType.all
   end
 
   # GET /contracts/1/edit
@@ -36,18 +55,24 @@ class ContractsController < ApplicationController
   # POST /contracts
   # POST /contracts.json
   def create
+
     @contract = Contract.new(contract_params)
 
     respond_to do |format|
       if @contract.save
 
-      @contact_company_user = ContactCompanyUser.new(company_user_params)
+      @contact_company_user = ContactCompanyUser.new(contact_company_user_params)
       @contact_company_user.contract_id = @contract.id 
       @contact_company_user.save
 
       @internship_agreement = InternshipAgreement.new(agreement_params)
       @internship_agreement.contract_id = @contract.id
       @internship_agreement.save
+
+
+      @company = Company.new(company_params)
+      @company.save
+
 
         format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
         format.json { render :show, status: :created, location: @contract }
@@ -93,12 +118,16 @@ class ContractsController < ApplicationController
       params.require(:contract).permit(:teacher_id, :student_id, :company_user_id)
     end
 
-    def company_user_params
-      params.require(:contact_company_user).permit(:job, :contract_id)
+    def contact_company_user_params
+      params.require(:contact_company_user).permit(:contract_id, :name, :job, :email, :phone)
     end 
 
     def agreement_params
-      params.require(:internship_agreement).permit(:contract_id, :learning_goals)
+      params.require(:internship_agreement).permit(:contract_id, :start_date, :end_date, :weekly_working_hours, :work_tasks, :learning_goals, :other_comments)
+    end 
+
+    def company_params
+      params.require(:company).permit(:name, :cvr, :employees_number, :company_address, :zip_code, :city, :country, :website, :internship_address)
     end 
 
 end

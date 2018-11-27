@@ -11,49 +11,83 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div id="student_info" >
+
   <% if current_student.name.nil? %>
   <%= form.text_field :name, placeholder: "Name" %>
   <% else %>
   <%= form.text_field :name, value: current_student.name %>
   <% end %>
-  </div>
-
-  <div class="field">
+  
   <% if current_student.email.nil? %>
   <%= form.text_field :email, placeholder: "Email" %>
   <% else %>
   <%= form.text_field :email, value: current_student.email %>
   <% end %>
-  </div>
-
- <div class="field">
+  
   <% if current_student.mobile_phone.nil? %>
   <%= form.text_field :mobile_phone, placeholder: "Mobile phone" %>
   <% else %>
   <%= form.text_field :mobile_phone, value: current_student.mobile_phone %>
   <% end %>
+  
+
+ <%= form.collection_select :programme_id, @programmes, :id, :name %>
+
+
+ <%= form.collection_radio_buttons :contact_language_id, @contact_language, :id, :name, { checked: @contact_language.first.id }%><br>
+
+ <%= form.collection_radio_buttons :internship_type_id, @internship_type, :id, :name, { checked: @internship_type.first.id }%>
+
+
   </div>
 
-  <div class="field">
-    <%= form.text_field :teacher_id, placeholder: "Teacher" %>
+<div id="company">
+
+    <%= fields_for :company do |f| %>
+    <%= f.text_field :name, placeholder: "Name" %>
+    <%= f.text_field :cvr, placeholder: "CVR" %>
+    <%= f.text_field :employees_number, placeholder: "Number of employees" %>
+    <%= f.text_field :company_address, placeholder: "Company address" %>
+    <%= f.text_field :zip_code, placeholder: "Zip code" %>
+    <%= f.text_field :city, placeholder: "City" %>
+    <%= f.text_field :country, placeholder: "Country" %>
+    <%= f.text_field :website, placeholder: "Website" %>
+    <%= f.text_field :internship_address, placeholder: "Internship address" %>
+    <% end %> 
+
+</div>
+
+<div id="contact_user">
+
+    <%= fields_for :contact_company_user do |f| %>
+    <%= f.text_field :name, placeholder: "Name" %>
+    <%= f.text_field :job, placeholder: "Job" %>
+    <%= f.text_field :email, placeholder: "Email" %>
+    <%= f.text_field :phone, placeholder: "Mobile phone" %>
+  <% end %> 
+
+</div>
+
+<div id="internship_agreement">
+
+    <%= fields_for :internship_agreement do |f| %>
+    <%= f.text_field :start_date, placeholder: "Start date" %>
+    <%= f.text_field :end_date, placeholder: "End date" %>
+    <%= f.text_field :weekly_working_hours, placeholder: "Weekly hours per week" %>
+    <%= f.text_field :work_tasks, placeholder: "Work tasks agreed" %>
+    <%= f.text_field :learning_goals, placeholder: "Learning goals" %>
+    <%= f.text_field :other_comments, placeholder: "Other comments " %>
+  <% end %> 
+
+</div>
+
+ <div class="field">
+    <%= form.hidden_field :teacher_id, :value => 1  %>
   </div>
 
   <div class="field">
     <%= form.hidden_field :student_id, :value => current_student.id %>
-  </div>
-
-<div class="field">
-    <%= fields_for :contact_company_user do |user_form| %>
-    <%= user_form.text_field :job, placeholder: "Job" %>
-
-  <% end %> 
-  </div>
-
- <div class="field">
-    <%= fields_for :internship_agreement do |f| %>
-    <%= f.text_field :learning_goals, placeholder: "Learning goals" %>
-  <% end %> 
   </div>
 
   <div class="actions">
