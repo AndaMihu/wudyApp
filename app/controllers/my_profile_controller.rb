@@ -4,6 +4,7 @@ class MyProfileController < ApplicationController
     end
     
     def new 
+            
     end
      
     def edit

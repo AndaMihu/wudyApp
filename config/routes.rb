@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contracts
   resources :contract 
   resources :my_profile
   resources :companies
@@ -6,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :students
   devise_for :company_users
   devise_for :teachers
+
+  #devise_for :students, controllers: { registrations: 'users/registrations' }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'frontpage#index'
   get '/student_dashboard' => 'student_dashboard#index'

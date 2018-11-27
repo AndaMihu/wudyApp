@@ -1,0 +1,62 @@
+<%= form_with(model: contract, local: true) do |form| %>
+  <% if contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
+
+      <ul>
+      <% contract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <% if current_student.name.nil? %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <% else %>
+  <%= form.text_field :name, value: current_student.name %>
+  <% end %>
+  </div>
+
+  <div class="field">
+  <% if current_student.email.nil? %>
+  <%= form.text_field :email, placeholder: "Email" %>
+  <% else %>
+  <%= form.text_field :email, value: current_student.email %>
+  <% end %>
+  </div>
+
+ <div class="field">
+  <% if current_student.mobile_phone.nil? %>
+  <%= form.text_field :mobile_phone, placeholder: "Mobile phone" %>
+  <% else %>
+  <%= form.text_field :mobile_phone, value: current_student.mobile_phone %>
+  <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :teacher_id, placeholder: "Teacher" %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :student_id, :value => current_student.id %>
+  </div>
+
+<div class="field">
+    <%= fields_for :contact_company_user do |user_form| %>
+    <%= user_form.text_field :job, placeholder: "Job" %>
+
+  <% end %> 
+  </div>
+
+ <div class="field">
+    <%= fields_for :internship_agreement do |f| %>
+    <%= f.text_field :learning_goals, placeholder: "Learning goals" %>
+  <% end %> 
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

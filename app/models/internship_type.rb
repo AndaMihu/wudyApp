@@ -1,2 +1,3 @@
 class InternshipType < ApplicationRecord
+    
 end
