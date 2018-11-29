@@ -12,19 +12,24 @@
             <li>
                 <span>01</span>
                 <h1>
+                <% if student_signed_in? %>
                     <%= link_to "Dashboard", student_dashboard_path %>
+                <% elsif teacher_signed_in? %>
+                    <%= link_to "Students Dashboard", students_path %>
+                <% else %>
+                <% end %>
                 </h1>
             </li>
             <li>
                 <span>02</span>
                 <h1>
-                    <%= link_to "My internship coach", root_path %>
+                    <%= link_to "My internship coach", internship_coaches_path %>
                 </h1>
             </li>
             <li>
                 <span>03</span>
                 <h1>
-                    <%= link_to "Contract", contracts_path %>
+                    <%= link_to "Contract", new_contract_path %>
                 </h1>
             </li>
             <li>

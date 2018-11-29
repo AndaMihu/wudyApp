@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_27_194605) do
+ActiveRecord::Schema.define(version: 2018_11_29_101227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.string "location"
     t.integer "available_spots"
     t.string "company_description"
     t.string "internship_description"
@@ -32,6 +31,8 @@ ActiveRecord::Schema.define(version: 2018_11_27_194605) do
     t.string "country"
     t.string "internship_address"
     t.string "city"
+    t.bigint "contract_id"
+    t.index ["contract_id"], name: "index_companies_on_contract_id"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
 
@@ -197,11 +198,13 @@ ActiveRecord::Schema.define(version: 2018_11_27_194605) do
     t.bigint "programme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "teacher_id"
     t.index ["company_id"], name: "index_students_on_company_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["programme_id"], name: "index_students_on_programme_id"
     t.index ["project_timeline_id"], name: "index_students_on_project_timeline_id"
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+    t.index ["teacher_id"], name: "index_students_on_teacher_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -242,6 +245,7 @@ ActiveRecord::Schema.define(version: 2018_11_27_194605) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "companies", "contracts"
   add_foreign_key "companies", "industries"
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"
@@ -260,6 +264,7 @@ ActiveRecord::Schema.define(version: 2018_11_27_194605) do
   add_foreign_key "positions", "companies"
   add_foreign_key "programmes", "universities"
   add_foreign_key "project_timelines", "companies"
+  add_foreign_key "students", "teachers"
   add_foreign_key "tasks", "project_timelines"
   add_foreign_key "teachers", "universities"
 end

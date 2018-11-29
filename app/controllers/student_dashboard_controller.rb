@@ -4,7 +4,7 @@ class StudentDashboardController < ApplicationController
             return redirect_to my_profile_index_path
             
            else
-            return redirect_to student_dashboard_path
+            return redirect_to companies_path
            end   
     end
 

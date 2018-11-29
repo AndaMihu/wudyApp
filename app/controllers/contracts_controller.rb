@@ -6,18 +6,7 @@ class ContractsController < ApplicationController
   def index
    @contracts = Contract.all
 
-   @contracts_all = Contract.find_by(student_id: current_student.id)
-    if @contracts_all.nil?
-       redirect_to new_contract_path
-    else 
-
-    #get me all the programmes that have the same university id as the user
-
-
-    
-
-    
-   end
+  
   
   #@agreement = InternshipAgreement.includes(:internship_agreemenet).where(:internship_agreemenet => {contract_id: current_student.contratct_id}).first
   
@@ -39,13 +28,27 @@ class ContractsController < ApplicationController
 
     #@pr = Programme.joins(:university).where(university_id: 1)
 
+    @current_contract = Contract.find_by(student_id: current_student.id)
+   
+    if @current_contract.nil?
+       redirect_to new_contract_path
+    else 
+    redirect_to contract_path(@current_contract)
+
+   end
+
     @programmes = Programme.all
 
     @contract = Contract.new
 
+    @company = Company.new
+
     @contact_language = ContactLanguage.all
 
     @internship_type = InternshipType.all
+  end
+  
+  def show
   end
 
   # GET /contracts/1/edit
@@ -71,8 +74,8 @@ class ContractsController < ApplicationController
 
 
       @company = Company.new(company_params)
+      @company.contract_id = @contract.id 
       @company.save
-
 
         format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
         format.json { render :show, status: :created, location: @contract }
@@ -118,6 +121,11 @@ class ContractsController < ApplicationController
       params.require(:contract).permit(:teacher_id, :student_id, :company_user_id)
     end
 
+    def company_params    
+      params.require(:company).permit(:contract_id, :name, :cvr, :industry_id, :employees_number, :company_address, :zip_code, :city, :country, :website, :internship_address)
+    end 
+
+
     def contact_company_user_params
       params.require(:contact_company_user).permit(:contract_id, :name, :job, :email, :phone)
     end 
@@ -126,8 +134,5 @@ class ContractsController < ApplicationController
       params.require(:internship_agreement).permit(:contract_id, :start_date, :end_date, :weekly_working_hours, :work_tasks, :learning_goals, :other_comments)
     end 
 
-    def company_params
-      params.require(:company).permit(:name, :cvr, :employees_number, :company_address, :zip_code, :city, :country, :website, :internship_address)
-    end 
-
+    
 end
