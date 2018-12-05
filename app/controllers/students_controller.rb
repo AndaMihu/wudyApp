@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
     def index
+        @students = Student.where(teacher_id: current_teacher.id)  
     end
     
     def new 
@@ -9,6 +10,7 @@ class StudentsController < ApplicationController
     end
 
     def show
+        @student = Student.find(params[:id])
     end
 
     def update

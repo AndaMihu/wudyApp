@@ -4,32 +4,32 @@
 // $title-color: #ffff;
 
 @font-face {
-  font-family: "Nationale";
-  src: font-url("Nationale_Regular.ttf") format("truetype");
+  // font-family: "Nationale";
+  // src: font-url("Nationale_Regular.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: "Nationale Bold";
-  src: font-url("Nationale_Bold.ttf") format("truetype");
+  //font-family: "Nationale Bold";
+  //src: font-url("Nationale_Bold.ttf") format("truetype");
   font-weight: 600;
   font-style: bold;
 }
 @font-face {
-  font-family: "Nationale DemiBold";
-  src: font-url("Nationale_DemiBold.ttf") format("truetype");
+  // font-family: "Nationale DemiBold";
+  // src: font-url("Nationale_DemiBold.ttf") format("truetype");
   font-weight: 500;
   font-style: demiBold;
 }
 @font-face {
-  font-family: "Nationale Light";
-  src: font-url("Nationale_Light.ttf") format("truetype");
+  // font-family: "Nationale Light";
+  // src: font-url("Nationale_Light.ttf") format("truetype");
   font-weight: 200;
   font-style: light;
 }
 @font-face {
-  font-family: "Nationale Medium";
-  src: font-url("Nationale_Medium.ttf") format("truetype");
+  // font-family: "Nationale Medium";
+  // src: font-url("Nationale_Medium.ttf") format("truetype");
   font-weight: 400;
   font-style: medium;
 }
@@ -47,7 +47,7 @@ $padding: 30px;
 $main-padding: 50px;
 
 %font {
-  font-family: "Nationale";
+  // font-family: "Nationale";
   font-weight: 300;
 }
 
@@ -128,7 +128,7 @@ $main-padding: 50px;
 }
 
 %button {
-  background-color: $accent-color;
+  background-color: $medium-green;
   text-align: center;
   //color: $primary-color;
   font-weight: 600;

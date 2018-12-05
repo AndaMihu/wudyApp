@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_101227) do
+ActiveRecord::Schema.define(version: 2018_12_05_162208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_101227) do
     t.string "country"
     t.string "internship_address"
     t.string "city"
-    t.bigint "contract_id"
-    t.index ["contract_id"], name: "index_companies_on_contract_id"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
 
@@ -57,9 +55,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_101227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mobile_phone"
-    t.bigint "contract_id"
     t.index ["company_id"], name: "index_company_users_on_company_id"
-    t.index ["contract_id"], name: "index_company_users_on_contract_id"
     t.index ["email"], name: "index_company_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_company_users_on_reset_password_token", unique: true
   end
@@ -199,6 +195,10 @@ ActiveRecord::Schema.define(version: 2018_11_29_101227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "teacher_id"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["company_id"], name: "index_students_on_company_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["programme_id"], name: "index_students_on_programme_id"
@@ -229,6 +229,8 @@ ActiveRecord::Schema.define(version: 2018_11_29_101227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "university_id"
+    t.string "access_token"
+    t.string "refresh_token"
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
     t.index ["university_id"], name: "index_teachers_on_university_id"
@@ -245,11 +247,9 @@ ActiveRecord::Schema.define(version: 2018_11_29_101227) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "companies", "contracts"
   add_foreign_key "companies", "industries"
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"
-  add_foreign_key "company_users", "contracts"
   add_foreign_key "contact_company_users", "contracts"
   add_foreign_key "contracts", "contact_languages"
   add_foreign_key "contracts", "internship_types"

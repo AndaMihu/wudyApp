@@ -1,4 +1,5 @@
 class Teacher < ApplicationRecord
+
   has_many :student
 
   accepts_nested_attributes_for :student
@@ -6,4 +7,6 @@ class Teacher < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-end
+
+         
+      end

@@ -1,6 +1,7 @@
 class MyProfileController < ApplicationController
 
     def index
+        @student = current_student.profile_picture
     end
     
     def new 
@@ -8,24 +9,26 @@ class MyProfileController < ApplicationController
     end
      
     def edit
+        @student = current_student
     end
+
     def update
         @student = current_student
     
         if @student.update_attributes(student_params)
-              respond_to do |format|
                 if @student.save
-                      format.html { redirect_to '/my_profile' }
+                      redirect_to '/my_profile' 
                     else
-                      format.html { redirect_to '/my_profile/error' }
+                     redirect_to '/my_profile/error' 
                   end
               end
           end 
-    end
+
+  
 
 private
     def student_params
-        params.require(:student).permit(:name, :education, :work_experience)
+        params.require(:student).permit(:name, :email, :mobile_phone, :education, :work_experience, :volunteer_experience, :hard_skills, :soft_skills, :interests, :avatar, :cv)
     end
 
 end

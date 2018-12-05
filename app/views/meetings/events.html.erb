@@ -1,0 +1,17 @@
+<ul>
+  <% @event_list.items.each do |event| %>
+    <li><%= event.summary %> (<%= event.id %>)</li>
+  <% end %>
+</ul>
+
+<%= form_tag new_event_url do  %>
+    <%= text_field :summary, params[:summary], placeholder: "Title" %>
+    <%= text_field :description, params[:description], placeholder: "Description" %>
+    <%= text_field :email, params[:email], value: current_teacher.email %>
+    <%#= date_field :start_date, params[:start_date], placeholder: "Start date" %>
+    <%#= date_field :end_date, params[:end_date], placeholder: "End date" %>
+
+
+
+  <%= submit_tag 'Add event' %>
+<% end %>

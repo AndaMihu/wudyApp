@@ -1,5 +1,7 @@
 <header>
-    <%= link_to "Back", root_path %>
+    <% if current_student || current_teacher || current_company_user%>
+
+    <%#= link_to "Back", root_path %>
     
     <button id="hamburger" type="button">
         <span class="hamburger-box">
@@ -16,34 +18,51 @@
                     <%= link_to "Dashboard", student_dashboard_path %>
                 <% elsif teacher_signed_in? %>
                     <%= link_to "Students Dashboard", students_path %>
-                <% else %>
+                <% else company_user_signed_in? %>
+                    <%#= link_to "Project timeline", project_timeline_path(@project_timeline) %>
                 <% end %>
                 </h1>
             </li>
             <li>
                 <span>02</span>
                 <h1>
+                 <% if student_signed_in? %>
                     <%= link_to "My internship coach", internship_coaches_path %>
+                <% elsif company_user_signed_in? %>
+                    <%= link_to "Interns", students_path %>
+
+                <% end %>
                 </h1>
             </li>
-            <li>
+            <li>    
                 <span>03</span>
                 <h1>
+                <% if student_signed_in? %>
                     <%= link_to "Contract", new_contract_path %>
+                <% elsif company_user_signed_in? %>
+                    <%= link_to "My profile", my_profile_index_path %>
+                <% end %>
                 </h1>
             </li>
+            
+            <% if student_signed_in? || teacher_signed_in? %>
             <li>
                 <span>04</span>
                 <h1>
                     <%= link_to "Companies list", companies_path %>
                 </h1>
             </li>
+            <% end %> 
+
+            <% if student_signed_in? || teacher_signed_in? %>
              <li>
                 <span>05</span>
                 <h1>
                     <%= link_to "My profile", my_profile_index_path %>
                 </h1>
             </li>
+            <% end %>
+            
             <br>
 
             <li class="logout">
@@ -53,4 +72,5 @@
             </li>
         </ul>
     </nav>
+    <% end %>
 </header>

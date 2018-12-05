@@ -5,9 +5,6 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
    @contracts = Contract.all
-
-  
-  
   #@agreement = InternshipAgreement.includes(:internship_agreemenet).where(:internship_agreemenet => {contract_id: current_student.contratct_id}).first
   
   #@company_user = CompanyUser.includes(:company_user).where(:company_user => {contract_id: current_student.contratct_id}).first

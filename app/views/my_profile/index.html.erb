@@ -1,12 +1,22 @@
 <h1>My profile</h1>
+<h2> Hey! If you have not completed your profile do so by clicking edit profile. </h2>
+
 
 <div class="single-employee row">
       <div class="info col-xs-8 col-sm-10">
-        <p class="name"><%= current_student.name %></p>
-        <p class="email"><%= current_student.email %></p>
-        <p class="mobile"><%= current_student.mobile_phone %></p>
-        <p class="education"> <%= current_student.education %></p>
-        <p class="work_experience"> <%= current_student.work_experience %></p>
+        <p class="name">Name: <%= current_student.name %></p>
+        <p class="email">Email: <%= current_student.email %></p>
+        <p class="mobile">Mobile phone: <%= current_student.mobile_phone %></p>
+        <p class="education">Education: <%= current_student.education %></p>
+        <p class="work_experience">Work experience:<%= current_student.work_experience %></p>
+        <p class="volunteer_experience">Volunteer experience:<%= current_student.volunteer_experience %></p>
+        <p class="hard_skills">Hard skills:<%= current_student.hard_skills %></p>
+        <p class="soft_skills">Soft skills:<%= current_student.soft_skills %></p>
+        <p class="interests">Interests:<%= current_student.interests %></p>
+        <p class="avatar">Profile picture: <%= image_tag current_student.avatar.url(:medium) %>
+
+ </p>
+        <p class="cv">Resume:<%#= current_student.interests %></p>
 
 </div>
        

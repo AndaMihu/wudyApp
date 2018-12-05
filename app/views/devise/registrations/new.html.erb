@@ -8,6 +8,21 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+<% if current_page?(new_company_user_registration_path) %>
+  <div class="field">
+  <%= f.fields_for :company do |company_form| %>
+     <%= company_form.text_field :name, autocomplete: "company", placeholder: "Company name"  %>
+  <% end %>
+  </div>
+<% end %>
+
+<% if current_page?(new_student_registration_path) %>
+<div class="field">
+<%= f.label :internship_coach %><br />
+ <%= f.collection_select(:teacher_id, @teachers, :id, :name, :selected => params[:id]) %>
+</div><br>
+<% end %> 
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

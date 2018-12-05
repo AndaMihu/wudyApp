@@ -1,0 +1,11 @@
+<%= form_for :task, url: task_index_path, action: :create, method: :post  do |form| %>
+
+    <%= form.text_field :name, placeholder: "Task name" %><br>
+    <%= form.text_field :description, placeholder: "Description" %><br>
+    <%= form.date_select :start_date %><br>
+    <%= form.date_select :end_date %><br>
+    <%= form.hidden_field :project_timeline_id, :value => 2 %>
+
+<%= form.submit %>
+
+<% end %>

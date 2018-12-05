@@ -1,17 +1,80 @@
 <%= form_for :student, url: my_profile_update_path(@student), action: :update, method: :patch  do |form| %>
   
+  <%if @student.name.nil? %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <% else %>
+  <%= form.text_field :name, value: @student.name %>
+  <% end %><br>
 
-  <div class="field">
-    <%= form.text_field :name, placeholder: "Name" %>
+ <% if @student.email.nil? %>
+  <%= form.text_field :email, placeholder: "Email" %>
+  <% else %>
+  <%= form.text_field :email, value: @student.email %>
+  <% end %><br>
+
+  
+  <% if @student.mobile_phone.nil? %>
+  <%= form.text_field :mobile_phone, placeholder: "Mobile phone" %>
+  <% else %>
+  <%= form.text_field :mobile_phone, value: @student.mobile_phone %>
+  <% end %><br>
+
+  
+  <% if @student.education.nil? %>
+  <%= form.text_field :education, placeholder: "Education" %>
+  <% else %>
+  <%= form.text_field :education, value: @student.education %>
+  <% end %><br>
+
+  <% if @student.work_experience.nil? %>
+  <%= form.text_field :work_experience, placeholder: "Work experience" %>
+  <% else %>
+  <%= form.text_field :work_experience, value: @student.work_experience %>
+  <% end %><br>
+  
+
+  <% if @student.volunteer_experience.nil? %>
+  <%= form.text_field :volunteer_experience, placeholder: "Volunteer experience" %>
+  <% else %>
+  <%= form.text_field :volunteer_experience, value: @student.volunteer_experience %>
+  <% end %><br>
+
+  <% if @student.hard_skills.nil? %>
+  <%= form.text_field :hard_skills, placeholder: "Hard skills" %>
+  <% else %>
+  <%= form.text_field :hard_skills, value: @student.hard_skills %>
+  <% end %><br>
+
+
+  <% if @student.soft_skills.nil? %>
+  <%= form.text_field :soft_skills, placeholder: "Soft skills" %>
+  <% else %>
+  <%= form.text_field :soft_skills, value: @student.soft_skills %>
+  <% end %><br>
+
+
+ 
+  <% if @student.interests.nil? %>
+  <%= form.text_field :interests, placeholder: "Interests" %>
+  <% else %>
+  <%= form.text_field :interests, value: @student.interests %>
+  <% end %><br>
+
+  <% if @student.avatar.nil? %>
+  <%= form.label :name, 'Profile picture' %>
+  <%= form.file_field :avatar%>
+  <% else %>
+  <%= form.label :name, 'Profile picture' %>
+  <%= image_tag current_student.avatar.url(:medium) %>
+  <%= form.file_field :avatar %>
+  <% end %><br>
+
+
+   <div class="field">
+    <%= form.label :name, 'Resume' %>
+    <%= form.file_field :cv%>
   </div>
 
-  <div class="field">
-    <%= form.text_field :education, placeholder: "Education" %>
-  </div>
-
-  <div class="field">
-    <%= form.text_field :work_experience, placeholder: "Work experience"%>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

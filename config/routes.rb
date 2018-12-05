@@ -4,14 +4,29 @@ Rails.application.routes.draw do
   resources :companies
   resources :tests
   resources :internship_coaches
-  devise_for :students
-  devise_for :company_users
-  devise_for :teachers
+  resources :project_timeline
   resources :students
+  resources :task
+
+  devise_for :students,              
+  :controllers => { :registrations => 'users/registrations' },
+  path: '', 
+             path_names: 
+             {
+               sign_in: 'login', 
+               sign_out: 'logout', 
+               sign_up: 'register',
+               confirmation:  'confirmation' 
+
+            }
+  
+  devise_for :company_users,
+  :controllers => { :registrations => 'company_users/registrations' }
 
 
-  #devise_for :students, controllers: { registrations: 'users/registrations' }
-
+  devise_for :teachers
+    
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'frontpage#index'
   get '/student_dashboard' => 'student_dashboard#index'
@@ -26,6 +41,13 @@ Rails.application.routes.draw do
 
   get '/contracts/success' => 'contracts#success'
   get '/contracts/error' => 'contracts#error'
+
+  get '/redirect', to: 'meetings#redirect', as: 'redirect'
+  get '/callback', to: 'meetings#callback', as: 'callback'
+  get '/calendars', to: 'meetings#calendars', as: 'calendars'
+  get '/events/:calendar_id', to: 'meetings#events', as: 'events', calendar_id: /[^\/]+/
+
+  post '/events/:calendar_id', to: 'meetings#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
 
  

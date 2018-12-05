@@ -1,0 +1,37 @@
+  <script type="text/javascript">
+    google.charts.load("current", {packages:["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var container = document.getElementById('project_timeline');
+      var chart = new google.visualization.Timeline(container);
+      var dataTable = new google.visualization.DataTable();
+      
+      dataTable.addColumn({ type: 'string', id: 'Title' });
+
+      dataTable.addColumn({ type: 'string', id: 'Description' });
+
+      dataTable.addColumn({ type: 'date', id: 'Start' });
+      
+      dataTable.addColumn({ type: 'date', id: 'End' });
+
+      dataTable.addRows([
+        [ 'Magnolia Room', 'Google Charts', new Date(0,0,0,14,0,0), new Date(0,0,0,15,0,0)],
+        [ 'Magnolia Room', 'App Engine',    new Date(0,0,0,15,0,0), new Date(0,0,0,16,0,0)]]);
+
+
+      var options = {
+        timeline: { showRowLabels: false },
+        avoidOverlappingGridLines: false
+      };
+
+      chart.draw(dataTable, options);
+    }
+
+  </script>
+
+<%= @task.inspect %>
+
+  <div id="project_timeline" style="height: 200px;"></div>
+
+<%= link_to 'New tasks', new_task_path %>

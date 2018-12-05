@@ -62,3 +62,18 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'dotenv'
+
+#google calendar api integration
+#gem 'google-api-client', '0.24.3', require: 'google/apis'
+#gem 'omniauth'
+#gem 'omniauth-google-oauth2'
+
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
+gem "chartkick"
+
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+gem "aws-sdk", '~> 2'
