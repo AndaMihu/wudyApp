@@ -1,5 +1,5 @@
 class Industry < ApplicationRecord
-    has_one :company
+    has_many :company
 
     accepts_nested_attributes_for :company
 end

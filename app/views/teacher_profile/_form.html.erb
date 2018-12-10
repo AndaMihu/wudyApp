@@ -1,0 +1,39 @@
+<%= form_for :teacher, url: teacher_profile_path(@teacher), action: :update, method: :patch  do |form| %>
+  
+  <%if @teacher.name.nil? %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <% else %>
+  <%= form.text_field :name, value: @teacher.name %>
+  <% end %><br>
+
+ <% if @teacher.email.nil? %>
+  <%= form.text_field :email, placeholder: "Email" %>
+  <% else %>
+  <%= form.text_field :email, value: @teacher.email %>
+  <% end %><br>
+
+  
+  <% if @teacher.specialization.nil? %>
+  <%= form.text_field :specialization, placeholder: "Mobile phone" %>
+  <% else %>
+  <%= form.text_field :specialization, value: @teacher.specialization %>
+  <% end %><br>
+
+
+
+  <% if @teacher.avatar.nil? %>
+  <%= form.label :name, 'Profile picture' %>
+  <%= form.file_field :avatar%>
+  <% else %>
+  <%= form.label :name, 'Profile picture' %>
+  <%= image_tag current_teacher.avatar.url(:medium) %>
+  <%= form.file_field :avatar %>
+  <% end %><br>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+        

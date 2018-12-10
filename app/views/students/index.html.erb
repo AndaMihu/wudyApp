@@ -1,5 +1,8 @@
 <h1>Student list</h1>
+<% if @students.empty? %>
+<h2> You have no students assigned yet. </h2>
 
+<% else %>
 <% @students.each do |student| %>
     <div class="single-employee row">
       <div class="info col-xs-8 col-sm-10">
@@ -11,4 +14,6 @@
     
       </div>
     </div>
-    <% end %>
+  <% end %>
+
+  <% end %>

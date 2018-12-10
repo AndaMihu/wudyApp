@@ -7,7 +7,7 @@ class Student < ApplicationRecord
 
 
   belongs_to :teacher
-
+  belongs_to :company
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

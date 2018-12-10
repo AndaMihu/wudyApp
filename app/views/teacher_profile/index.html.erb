@@ -1,0 +1,17 @@
+<h1>My profile</h1>
+<h2> Hey! If you have not completed your profile do so by clicking edit profile. </h2>
+
+
+<div class="single-employee row">
+      <div class="info col-xs-8 col-sm-10">
+        <p class="name">Name: <%= current_teacher.name %></p>
+        <p class="email">Email: <%= current_teacher.email %></p>
+        <p class="specialization">Specialization: <%= current_teacher.specialization %></p>
+        
+        <p class="avatar">Profile picture: <%= image_tag current_teacher.avatar.url(:medium) %>
+
+ </p>
+
+</div>
+       
+<%= link_to 'Edit profile', edit_teacher_profile_path(current_teacher), :class => "editBtn" %> 

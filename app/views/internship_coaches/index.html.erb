@@ -1,5 +1,7 @@
 <%#= @uni.inspect %>
-
+<% if current_student.teacher_id.nil? %>
+<h1> You have no internship coach assigned yet </h1>
+<% else %>
 <h1>Internship coach</h1>
 
 <div class="single-employee row">
@@ -11,3 +13,6 @@
 
 </div>
        
+
+<% end %>
+        

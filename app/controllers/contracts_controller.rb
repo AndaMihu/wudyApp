@@ -27,9 +27,8 @@ class ContractsController < ApplicationController
 
     @current_contract = Contract.find_by(student_id: current_student.id)
    
-    if @current_contract.nil?
-       redirect_to new_contract_path
-    else 
+    if @current_contract.present?
+      
     redirect_to contract_path(@current_contract)
 
    end
@@ -46,6 +45,8 @@ class ContractsController < ApplicationController
   end
   
   def show
+    @contract_show = Contract.find(params[:id])
+
   end
 
   # GET /contracts/1/edit

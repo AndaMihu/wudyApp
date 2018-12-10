@@ -1,13 +1,36 @@
 <% @companies.each do |company| %>
-    <div class="single-employee row">
+    <div class="single-company row">
       <div class="info col-xs-8 col-sm-10">
-        
+
+      <%= @interns.inspect %>
+
         <%= link_to company.name, company %> 
-        <p class="name"><%= @positions.name %></p>
-        <p class="spots"> <%= company.available_spots %></p>
-        <p class="industry"> <%= @industry.name %></p>
-        <p class="address"> <%= company.company_address %></p>
-    
+        <div class= "company-block" >
+
+        <p class="name">
+        <% company.position.each do |position|%>
+        <%= position.name %>
+        <% end %>
+        </p>
+
+        <p class="spots"> 
+        <%# if @interns.empty? %>
+        <%#= company.available_spots %>
+        <%# else %>
+        <%# until @interns > 0 do %>
+
+        <%# end %>
+        <%# end %>
+        </p>
+
+        <p class="industry"> 
+        <%= company.industry.name%>
+        </p>
+
+        <p class="address">
+         <%= company.company_address %>
+         </p>
+      </div><br>
       </div>
     </div>
     <% end %>

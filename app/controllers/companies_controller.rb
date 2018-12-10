@@ -1,11 +1,15 @@
 class CompaniesController < ApplicationController
     
     def index
-        @companies = Company.all 
+        @companies = Company.all
 
-        @industry = Industry.where(id: 3)
+        @industry = Company.first.industry
+        #@industry = Industry.includes(:company).where(id: industry_id).pluck(:name)
 
-        @positions = Position.where(id: 3)
+        @positions = Company.first.position.pluck(:name)
+
+        @interns = Company.first.students.ids
+
     end 
 
     def show

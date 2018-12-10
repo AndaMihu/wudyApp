@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :contracts
   resources :my_profile
+  resources :teacher_profile
   resources :companies
   resources :tests
   resources :internship_coaches
