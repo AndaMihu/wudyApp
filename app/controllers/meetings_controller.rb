@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
-
+  def index
+  end
     def calendars
         client = Signet::OAuth2::Client.new(client_options)
         client.update!(session[:authorization])
@@ -88,4 +89,6 @@ class MeetingsController < ApplicationController
           redirect_uri: callback_url
         }
       end
+
+     
 end

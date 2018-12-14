@@ -288,5 +288,4 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
 
-
 end

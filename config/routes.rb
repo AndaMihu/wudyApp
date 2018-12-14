@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :project_timeline
   resources :students
   resources :task
+  resources :events
+
 
   devise_for :students,              
   :controllers => { :registrations => 'users/registrations' },
@@ -45,10 +47,10 @@ Rails.application.routes.draw do
   get '/redirect', to: 'meetings#redirect', as: 'redirect'
   get '/callback', to: 'meetings#callback', as: 'callback'
   get '/calendars', to: 'meetings#calendars', as: 'calendars'
-  get '/events/:calendar_id', to: 'meetings#events', as: 'events', calendar_id: /[^\/]+/
+  #get '/events/:calendar_id', to: 'meetings#events', as: 'events', calendar_id: /[^\/]+/
 
-  post '/events/:calendar_id', to: 'meetings#new_event', as: 'new_event', calendar_id: /[^\/]+/
+  #post '/events/:calendar_id', to: 'meetings#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
-
+get '/meetings' => 'meetings#index'
  
 end
