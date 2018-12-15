@@ -11,14 +11,15 @@ $margin: 5px;
 }
 
 %placeholder {
-  // font-family: "Nationale";
+  font-family: 'Noto Serif SC', serif;
   font-weight: 200;
 }
 
 %input {
-  background-color: $input-background-color;
-  color: $input-light-gray;
+  background-color: $input-grey;
+  color: $dark-blue;
   margin-bottom: 15px;
+  border: 1px solid $input-border;
   &:focus {
     outline: 0;
     border: 1px solid $input-light-gray;

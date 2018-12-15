@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_101709) do
+ActiveRecord::Schema.define(version: 2018_12_15_162316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,10 @@ ActiveRecord::Schema.define(version: 2018_12_12_101709) do
     t.datetime "start"
     t.datetime "end"
     t.string "color"
+    t.bigint "teacher_id"
+    t.bigint "student_id"
+    t.index ["student_id"], name: "index_events_on_student_id"
+    t.index ["teacher_id"], name: "index_events_on_teacher_id"
   end
 
   create_table "industries", force: :cascade do |t|
@@ -269,6 +273,8 @@ ActiveRecord::Schema.define(version: 2018_12_12_101709) do
   add_foreign_key "contracts", "students"
   add_foreign_key "contracts", "teachers"
   add_foreign_key "daily_goals", "students"
+  add_foreign_key "events", "students"
+  add_foreign_key "events", "teachers"
   add_foreign_key "internship_agreements", "contracts"
   add_foreign_key "internship_coaches", "students"
   add_foreign_key "internship_coaches", "teachers"

@@ -47,7 +47,7 @@ $padding: 30px;
 $main-padding: 50px;
 
 %font {
-  // font-family: "Nationale";
+  font-family: 'Noto Serif SC', serif;
   font-weight: 300;
 }
 
@@ -129,13 +129,15 @@ $main-padding: 50px;
 
 %button {
   background-color: $medium-green;
+  font-family: 'Noto Serif SC', serif;
+  color: white;
   text-align: center;
-  //color: $primary-color;
   font-weight: 600;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0);
   padding: 15px;
   margin: 5px 0;
+  font-size: 14px;
   // margin: 0 $margin;
   // width: calc(100% - #{2*$margin});
   width: 100%;

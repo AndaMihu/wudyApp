@@ -2,7 +2,7 @@ class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy]
 
     def index
-      @events = Event.where(start: params[:start]..params[:end])
+      @events = Event.where(teacher_id: current_teacher.id)
     end
   
     def show
@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   
     def create
       @event = Event.new(event_params)
+      @event.teacher_id = current_teacher.id
       @event.save
     end
   
@@ -34,6 +35,6 @@ class EventsController < ApplicationController
       end
   
       def event_params
-        params.require(:event).permit(:title, :date_range, :start, :end, :color)
+        params.require(:event).permit(:title, :date_range, :start, :end, :color, :teacher_id)
       end
 end
