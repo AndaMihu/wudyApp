@@ -30,7 +30,8 @@
                     <%= link_to "My internship coach", internship_coaches_path %>
                 <% elsif company_user_signed_in? %>
                     <%= link_to "Interns", students_path %>
-
+                <% else teacher_signed_in?%> 
+                    <%= link_to "Calendar", events_path %>
                 <% end %>
                 </h1>
             </li>
@@ -41,6 +42,8 @@
                     <%= link_to "Contract", new_contract_path %>
                 <% elsif company_user_signed_in? %>
                     <%= link_to "My profile", my_profile_index_path %>
+                <% else teacher_signed_in?%> 
+                    <%= link_to "Chat", meetings_path %>
                 <% end %>
                 </h1>
             </li>
@@ -67,7 +70,7 @@
 
             <li class="logout">
                 <%= link_to destroy_teacher_session_path, method: :delete do %>
-                    Log ud
+                    Log out
                 <%end%>
             </li>
         </ul>

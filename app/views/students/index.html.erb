@@ -1,14 +1,23 @@
-<h1>Student list</h1>
-
+<h1>Students list</h1>
+<div id="students-list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Programme</th>
+    <th>Company</th>
+    <th>Position</th>
+    <th>Meetings</th>
+  </tr>
+<%= @programme.inspect %>
 <% @students.each do |student| %>
-    <div class="single-employee row">
-      <div class="info col-xs-8 col-sm-10">
-        
-        <%= link_to student.name, student %> 
-        <p class="spots"> <%= student.email %></p>
-        <p class="industry"> <%= student.mobile_phone %></p>
-        <p class="address"> <%= student.programme_id %></p>
+    <tr>
+        <td><%= link_to student.name, student %> </td>
+        <td> <%= student.email %></td>
+        <td> <%= @programme.name %></td>
+        <td> <%#= student.programme_id %></td>
     
-      </div>
-    </div>
+    </tr>
     <% end %>
+</table>
+</div>

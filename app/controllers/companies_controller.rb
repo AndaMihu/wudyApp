@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
     def index
         @companies = Company.all 
 
-        @industry = Industry.where(id: 3)
+        @industry = Company.industry.pluck(:name)
 
         @positions = Position.where(id: 3)
     end 

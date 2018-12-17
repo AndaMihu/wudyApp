@@ -21,7 +21,7 @@
 <% if current_page?(new_student_registration_path) %>
 <div class="field">
 <%= f.label :internship_coach %><br />
- <%= f.collection_select(:teacher_id, @teachers, :id, :name, :selected => params[:id]) %>
+<%= f.collection_select(:teacher_id, @teachers, :id, :name, :selected => params[:id]) %>
 </div><br>
 <% end %> 
 

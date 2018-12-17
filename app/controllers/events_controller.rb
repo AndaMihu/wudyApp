@@ -6,10 +6,16 @@ class EventsController < ApplicationController
     end
   
     def show
+      @eveStudent = Student.find(params[:id])
     end
   
     def new
       @event = Event.new
+      #@event.student_id = params[:id]
+      #@eveStudent = Student.find(params[:id])
+      #student_id = @eveStudent 
+      #@eveStudent = Student.find(params[:id])
+
     end
   
     def edit
@@ -18,6 +24,7 @@ class EventsController < ApplicationController
     def create
       @event = Event.new(event_params)
       @event.teacher_id = current_teacher.id
+      @event.student_id = 7
       @event.save
     end
   
@@ -31,10 +38,10 @@ class EventsController < ApplicationController
   
     private
       def set_event
-        @event = Event.find(params[:id])
+        #@event = Event.find(params[:id])
       end
   
       def event_params
-        params.require(:event).permit(:title, :date_range, :start, :end, :color, :teacher_id)
+        params.require(:event).permit(:title, :date_range, :start, :end, :color, :teacher_id, :student_id)
       end
 end
