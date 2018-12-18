@@ -1,8 +1,57 @@
-<p class="name"><%= @student.name %></p>
+<div class="st-heading">
+<h1>Student info</h1>
+</div>
 
-<%= link_to 'Book a meeting', event_path(@student), class:"btn" %>
+<div class="one-st"> 
+
+<div class="info">
+
+    <div class="personal">
+
+        <p class="avatar">Profile picture: <%= image_tag @student.avatar.url(:medium) %>
+        <p><%= @student.name %></p>
+        <p><%= @student.email %></p>
+        <p><%= @student.mobile_phone %></p>
+
+     </div>
+
+    <div class="uni">
+    <h3>University</h3>
+        <p><%= @student.education %></p>
+    </div>
+
+    <div class="pro">
+    <h3>Programme</h3>
+    </div>
+</div>
+
+<div class="contact">
 
 
-<a id="contact" href="mailto:andammihu@gmail.com">Contact</a>
+<div class="contact-btn">
+<div class="meeting"> Meetings </div>
+<a class="email" href="mailto:andammihu@gmail.com">Contact</a>
+<%= link_to 'Internship contract', contract_path(@student), class:"contract" %>
+</div>
 
-<%= link_to 'Internship contract', contract_path(@student), class:"btn" %>
+<div class="meeting-box">
+<h2> Booked meetings </h2><br>
+
+<% if @event.nil? %>
+<h3> You have no meetings booked with this student</h3>
+<%else %>
+<p>Meeting name: <%= @event.title %></p>
+<p>Date: <%= @event.start %></p>
+<% end %> 
+
+<br><br>
+<%= link_to 'Book a meeting', student_events_path(@student), class:"meeting" %>
+
+</div>
+
+
+</div>
+
+
+
+</div> 

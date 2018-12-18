@@ -4,6 +4,7 @@ initialize_calendar = function() {
  $('.calendar').each(function(){
     var calendar = $(this);
     calendar.fullCalendar({
+      aspectRatio: 2,
       header: {
         left: 'prev,next today',
         center: 'title',

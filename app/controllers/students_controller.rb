@@ -1,8 +1,10 @@
 class StudentsController < ApplicationController
     def index
         @students = Student.where(teacher_id: current_teacher.id)  
+        
         @programme = Student.first.programme_id
-        #@industry = Company.first.industry
+
+        #@event = Student.first.event
 
     end
     
@@ -14,6 +16,7 @@ class StudentsController < ApplicationController
 
     def show
         @student = Student.find(params[:id])
+        @event = Event.where(student_id: @student).first
     end
 
     def update

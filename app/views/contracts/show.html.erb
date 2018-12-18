@@ -1,5 +1,122 @@
 <p id="notice"><%= notice %></p>
+<%#= link_to 'Back', contracts_path %>
 
-<%= @student.inspect %>
+<div class="about">
+    <h1>Tell us about you</h1>
+    <table>
+    <tr class="cl-title">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Programme</th>
+    </tr>
+    <tr>
+    <td><%= @student.name %></td>
+    <td><%= @student.email %></td>
+    <td><%= @programme %></td>
+    </tr>
+    </table>
 
-<%= link_to 'Back', contracts_path %>
+    <table>
+    <tr class="cl-title">
+        <th>Contact language</th>
+        <th>Mobile phone</th>
+        <th>Internship type</th>
+    </tr>
+    <tr>
+    <td><%= @contact_language %></td>
+    <td><%= @student.mobile_phone %></td>
+    <td><%= @knternship_type %></td>
+    </tr>
+    </table>
+</div>
+
+
+<div class="company">
+    <h1>Company</h1>
+    <table>
+    <tr class="cl-title">
+        <th>Name</th>
+        <th>CVR</th>
+        <th>Number of employees</th>
+        <th>Website</th>
+
+    </tr>
+    <tr>
+    <td><%= @student.name %></td>
+    <td><%= @student.email %></td>
+    <td><%= @programme %></td>
+    </tr>
+    </table>
+
+    <table>
+    <tr class="cl-title">
+        <th>Company address</th>
+        <th>ZIP code</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Internship Address (if different from the one above)</th>
+
+    </tr>
+    <tr>
+    <td><%= @contact_language %></td>
+    <td><%= @student.mobile_phone %></td>
+    <td><%= @internship_type %></td>
+    </tr>
+    </table>
+</div>
+
+
+
+<div class="company_contact">
+    <h1>Company contact person</h1>
+
+    <table>
+    <tr class="cl-title">
+        <th>Name</th>
+        <th>Job</th>
+        <th>Email</th>
+        <th>Mobile phone</th>
+
+    </tr>
+
+    <tr>
+    <td><%= @student.name %></td>
+    <td><%= @student.email %></td>
+    <td><%= @programme %></td>
+    </tr>
+    </table>
+</div>
+
+<div class="internship_agreement">
+    <h1>Internship agreement</h1>
+
+    <table>
+    <tr class="cl-title">
+        <th>Start date</th>
+        <th>End date </th>
+        <th>Weekly hours per week</th>
+    </tr>
+
+    <tr>
+    <td><%= @student.name %></td>
+    <td><%= @student.email %></td>
+    <td><%= @programme %></td>
+    </tr>
+    </table>
+
+     <table>
+    <tr class="cl-title">
+        <th>Work tasks agreed</th>
+        <th>Learning goals </th>
+        <th>Other comments</th>
+    </tr>
+
+    <tr>
+    <td><%= @student.name %></td>
+    <td><%= @student.email %></td>
+    <td><%= @programme %></td>
+    </tr>
+    </table>
+
+
+</div>

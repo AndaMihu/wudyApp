@@ -3,14 +3,19 @@
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
+.calendar{
+  width: 80%;
+}
 
  .fc {
   direction: ltr;
   text-align: left;
+ 
 }
 
 .fc-rtl {
   text-align: right;
+  width:80%;
 }
 
 body .fc {
@@ -727,7 +732,7 @@ TODO: more distinction between this file and common.css
     color: #666;
   }
   td.fc-today {
-    background: #fcf8e3;
+    background: #6ab9ad;
   }
   .fc-disabled-day {
     background: #d7d7d7;

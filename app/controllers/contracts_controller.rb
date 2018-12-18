@@ -5,6 +5,7 @@ class ContractsController < ApplicationController
   # GET /contracts.json
   def index
    @contracts = Contract.all
+   
   #@agreement = InternshipAgreement.includes(:internship_agreemenet).where(:internship_agreemenet => {contract_id: current_student.contratct_id}).first
   
   #@company_user = CompanyUser.includes(:company_user).where(:company_user => {contract_id: current_student.contratct_id}).first
@@ -14,10 +15,14 @@ class ContractsController < ApplicationController
   # GET /contracts/1
   # GET /contracts/1.json
   def show
+    @programme = Student.first.programme
+    @contact_language = Contract.first.contact_language
+    @internship_type = Contract.first.internship_type
   end
 
   # GET /contracts/new
   def new
+
     #@uni_id = University.where()
     #get all programms that have the same university_id as the current_student programme
     #@pr = Programme.joins(:university).where(:university_id => {university_id: current_student.programme_id})
@@ -46,6 +51,8 @@ class ContractsController < ApplicationController
   end
   
   def show
+    @student = Student.find(params[:id])
+
   end
 
   # GET /contracts/1/edit

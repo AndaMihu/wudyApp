@@ -1,7 +1,11 @@
+<div class="st-heading">
 <h1>Students list</h1>
+<h3>Tip: use the filters to make your search faster and easier </h3>
+</div>
+
 <div id="students-list">
 <table>
-  <tr>
+  <tr class="cl-title">
     <th>Name</th>
     <th>Email</th>
     <th>Programme</th>
@@ -9,15 +13,43 @@
     <th>Position</th>
     <th>Meetings</th>
   </tr>
-<%= @programme.inspect %>
+
 <% @students.each do |student| %>
-    <tr>
-        <td><%= link_to student.name, student %> </td>
+    <tr style= "border-bottom: 1px solid black">
+        <td class="st-name"><%= link_to student.name, student %> </td>
         <td> <%= student.email %></td>
-        <td> <%= student.@programme.name %></td>
-        <td> <%#= student.programme_id %></td>
-    
+       
+        <% if student.programme_id.nil? %>
+         <td> not defined yet </td>
+        <% else %>
+          <td> <%= student.programme_id %></td>
+        <% end %>
+
+        <% if student.company_id.nil? %>
+         <td> not defined yet </td>
+        <% else %>
+          <td> <%= student.company_id %></td>    
+        <% end %>  
+
+        <%# if student.position_id.nil? %>
+          <td> not defined yet </td>
+        <%# else %>
+          <!--<td> <%#= student.position_id %></td>-->
+        <%# end %>
+
+        <%# if student.meetings_id.nil? %>
+          <td> not defined yet </td>
+        <%# else %>
+         <!-- <td> <%#= student.meetings_id %></td>-->
+        <%# end %>
+
+        
     </tr>
     <% end %>
 </table>
 </div>
+
+
+  <%# programme.student.each do |pr|%>
+      <%#= pr.name %>
+        <%# end %>

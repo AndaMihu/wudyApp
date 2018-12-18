@@ -223,6 +223,7 @@ header {
           font-weight: 600;
           // margin-bottom: 5px;
           @extend %categoryTitle;
+          color: $medium-orange;
         }
         h1 {
           // font-size: 7vw;
