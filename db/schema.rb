@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_162316) do
+ActiveRecord::Schema.define(version: 2018_12_18_201501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2018_12_15_162316) do
     t.bigint "internship_type_id"
     t.bigint "contact_language_id"
     t.string "name"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_contracts_on_company_id"
     t.index ["contact_language_id"], name: "index_contracts_on_contact_language_id"
     t.index ["internship_type_id"], name: "index_contracts_on_internship_type_id"
     t.index ["student_id"], name: "index_contracts_on_student_id"
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(version: 2018_12_15_162316) do
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"
   add_foreign_key "contact_company_users", "contracts"
+  add_foreign_key "contracts", "companies"
   add_foreign_key "contracts", "contact_languages"
   add_foreign_key "contracts", "internship_types"
   add_foreign_key "contracts", "students"

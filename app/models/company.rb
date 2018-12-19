@@ -2,6 +2,10 @@ class Company < ApplicationRecord
   
   belongs_to :industry
 
-  belongs_to :contract
+  has_one :contract
+
+  has_many :student
+
+  has_many :position, through: :company_position
 
 end

@@ -1,5 +1,7 @@
 class Student < ApplicationRecord
-  has_one :programme
+  belongs_to :programme
+  belongs_to :company
+  
   has_one :contract
 
   has_many :event 

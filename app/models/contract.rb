@@ -1,8 +1,10 @@
 class Contract < ApplicationRecord
   belongs_to :teacher
   belongs_to :student
+  belongs_to :contact_language
+  belongs_to :company
 
-  has_one :company
+
   has_one :internship_agreement
   has_one :contact_company_user
 

@@ -1,11 +1,6 @@
 class StudentsController < ApplicationController
     def index
         @students = Student.where(teacher_id: current_teacher.id)  
-        
-        @programme = Student.first.programme_id
-
-        #@event = Student.first.event
-
     end
     
     def new 

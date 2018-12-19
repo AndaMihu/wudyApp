@@ -1,18 +1,57 @@
+
+<%= @position.inspect %>
+<div class="st-heading">
+<h1>Compamies list</h1>
+<h3>Tip: use the filters to make your search faster and easier </h3>
+</div>
+
+<div id="students-list">
+<table>
+  <tr class="cl-title">
+    <th>Name</th>
+    <th>Available internship spots</th>
+    <th>Position</th>
+    <th>Industry</th>
+    <th>Location</th>
+  </tr>
+
 <% @companies.each do |company| %>
-    <div class="single-employee row">
-      <div class="info col-xs-8 col-sm-10">
-        
-        <h3> Company name </h3>
-        <%= link_to company.name, company %> 
-        
-        <p class="name"><%#= @positions.name %></p>
-        <h3> Available spots </h3>
-        <p class="spots"> <%= company.available_spots %></p>
-        <h3> Industry name </h3>
-        <p class="industry"> <%= @industry.name %></p>
-        <h3> Company address </h3>
-        <p class="address"> <%= company.company_address %></p>
+    <tr>
+        <td class="st-name"><%= link_to company.name, company %> </td>
+
+        <% if company.available_spots.nil? %>
+         <td> not defined yet </td>
+        <% else %>
+        <td> <%= company.available_spots %></td>
+        <% end %>
+
     
-      </div>
-    </div>
+       
+        <%# if company.positions.nil? %>
+        <!-- <td> not defined yet </td>-->
+        <%# else %>
+          <td> <%= @position.name %></td>
+        <%# end %>
+
+    
+
+        <% if company.industry_id.nil? %>
+         <td> not defined yet </td>
+        <% else %>
+          <td> <%= company.industry.name %></td>    
+        <% end %>  
+
+
+        <% if company.city.nil? %>
+          <td> not city yet </td>
+        <% else %>
+         <td> <%= company.city %></td>
+        <% end %>
+
+        
+    </tr>
     <% end %>
+</table>
+</div>
+
+

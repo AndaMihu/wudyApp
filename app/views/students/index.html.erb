@@ -8,9 +8,9 @@
   <tr class="cl-title">
     <th>Name</th>
     <th>Email</th>
-    <th>Programme</th>
-    <th>Company</th>
-    <th>Position</th>
+    <th>Study programme</th>
+    <th>Internship company</th>
+    <!--<th>Internship position</th>-->
     <th>Meetings</th>
   </tr>
 
@@ -22,26 +22,28 @@
         <% if student.programme_id.nil? %>
          <td> not defined yet </td>
         <% else %>
-          <td> <%= student.programme_id %></td>
+          <td> <%= student.programme.name %></td>
         <% end %>
+
+    
 
         <% if student.company_id.nil? %>
          <td> not defined yet </td>
         <% else %>
-          <td> <%= student.company_id %></td>    
+          <td> <%= student.company.name %></td>    
         <% end %>  
 
         <%# if student.position_id.nil? %>
-          <td> not defined yet </td>
+          <!--<td> not defined yet </td>-->
         <%# else %>
           <!--<td> <%#= student.position_id %></td>-->
         <%# end %>
 
-        <%# if student.meetings_id.nil? %>
-          <td> not defined yet </td>
-        <%# else %>
-         <!-- <td> <%#= student.meetings_id %></td>-->
-        <%# end %>
+        <% if student.event.nil? %>
+          <td> not meetings yet </td>
+        <% else %>
+         <td> <%= student.event.ids.count %></td>
+        <% end %>
 
         
     </tr>
