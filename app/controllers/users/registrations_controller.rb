@@ -3,12 +3,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 def new
   @teachers = Teacher.all
+  @programmes = Programme.all
+
 super
 end 
 
   def create
    
     @teachers = Teacher.all
+    @programmes = Programme.all
 
       build_resource(sign_up_params)
       resource.save
@@ -38,7 +41,7 @@ end
 
 
   def sign_up_params
-    params.require(:student).permit(:email, :teacher_id, :password, :password_confirmation)
+    params.require(:student).permit(:email, :teacher_id, :programme_id, :password, :password_confirmation)
   end
  
 

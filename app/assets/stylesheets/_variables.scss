@@ -172,6 +172,39 @@ $main-padding: 50px;
   @extend %small;
 }
 
+%table{
+    width:100%;
+    padding:15px;
+    overflow: scroll;
+    background-color: white;
+    width: 85%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
+    -moz-box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
+    box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
+    font-family: 'Roboto', sans-serif;
+  
+    .cl-title th{
+      color: $dark-greyish;
+  }
+    td,th{
+      text-align: left;
+      padding: 8px;
+  }
+
+}
+
+%editBtn{
+  background-color: $medium-green;
+}
+
 // $dark-yellow: #e49f42;
 // $medium-yellow: #efb850;
 // $light-yellow: #fbe48c;

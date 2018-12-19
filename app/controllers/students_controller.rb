@@ -1,6 +1,9 @@
 class StudentsController < ApplicationController
     def index
         @students = Student.where(teacher_id: current_teacher.id)  
+        
+        @programme = StudentProgramme.all
+
     end
     
     def new 

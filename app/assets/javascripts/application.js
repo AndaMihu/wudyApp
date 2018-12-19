@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require my_profile
+
 //= require jquery
 
 //= require activestorage
@@ -21,6 +23,8 @@
 //= require gcal
 //= require_tree .
 //= require chartkick
+
+
 
 
 

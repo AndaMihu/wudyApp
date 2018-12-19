@@ -4,8 +4,9 @@ class Company < ApplicationRecord
 
   has_one :contract
 
-  has_many :student
+  #has_many :student
 
+  has_many :company_position
   has_many :position, through: :company_position
 
 end

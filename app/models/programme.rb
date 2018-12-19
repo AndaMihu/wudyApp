@@ -1,4 +1,4 @@
 class Programme < ApplicationRecord
   belongs_to :university
-  has_many :student
+  has_many :students
 end

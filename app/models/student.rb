@@ -1,12 +1,14 @@
 class Student < ApplicationRecord
+
   belongs_to :programme
-  belongs_to :company
+  
+  #belongs_to :company
   
   has_one :contract
 
   has_many :event 
 
-  accepts_nested_attributes_for :programme
+ # accepts_nested_attributes_for :programme
   accepts_nested_attributes_for :contract
   accepts_nested_attributes_for :event
 

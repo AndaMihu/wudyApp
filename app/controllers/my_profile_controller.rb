@@ -17,9 +17,9 @@ class MyProfileController < ApplicationController
     
         if @student.update_attributes(student_params)
                 if @student.save
-                      redirect_to '/my_profile' 
-                    else
-                     redirect_to '/my_profile/error' 
+                      redirect_to my_profile_path(@student), alert: "Your resume is saved!" 
+                else
+                     render 'edit', alert: "Oops! There was a problem, please try again"
                   end
               end
           end 

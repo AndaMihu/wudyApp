@@ -1,7 +1,5 @@
-
-<%= @position.inspect %>
 <div class="st-heading">
-<h1>Compamies list</h1>
+<h1>Companies list</h1>
 <h3>Tip: use the filters to make your search faster and easier </h3>
 </div>
 
@@ -26,24 +24,29 @@
         <% end %>
 
     
-       
-        <%# if company.positions.nil? %>
-        <!-- <td> not defined yet </td>-->
-        <%# else %>
-          <td> <%= @position.name %></td>
-        <%# end %>
+       <div class="position">
+      
+        <% company.position.each do |p| %>
+          <% if p.name.nil? %>
+            <td> not defined yet </td>
+          <% else %>
+            <td> <%= p.name %> </td>
+          <% end %>
+        <% end %> 
 
+      </div>
     
+       <div class="industry">
 
         <% if company.industry_id.nil? %>
          <td> not defined yet </td>
         <% else %>
-          <td> <%= company.industry.name %></td>    
+        <td> <%= company.industry.name %></td>    
         <% end %>  
-
+      </div>
 
         <% if company.city.nil? %>
-          <td> not city yet </td>
+          <td> no city yet </td>
         <% else %>
          <td> <%= company.city %></td>
         <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_201501) do
+ActiveRecord::Schema.define(version: 2018_12_19_090127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,15 @@ ActiveRecord::Schema.define(version: 2018_12_18_201501) do
     t.index ["company_id"], name: "index_project_timelines_on_company_id"
   end
 
+  create_table "student_programmes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "student_id"
+    t.bigint "programme_id"
+    t.index ["programme_id"], name: "index_student_programmes_on_programme_id"
+    t.index ["student_id"], name: "index_student_programmes_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -205,7 +214,6 @@ ActiveRecord::Schema.define(version: 2018_12_18_201501) do
     t.string "interests"
     t.string "mobile_phone"
     t.bigint "project_timeline_id"
-    t.bigint "company_id"
     t.bigint "programme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -214,7 +222,6 @@ ActiveRecord::Schema.define(version: 2018_12_18_201501) do
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["company_id"], name: "index_students_on_company_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["programme_id"], name: "index_students_on_programme_id"
     t.index ["project_timeline_id"], name: "index_students_on_project_timeline_id"
@@ -286,6 +293,8 @@ ActiveRecord::Schema.define(version: 2018_12_18_201501) do
   add_foreign_key "positions", "companies"
   add_foreign_key "programmes", "universities"
   add_foreign_key "project_timelines", "companies"
+  add_foreign_key "student_programmes", "programmes"
+  add_foreign_key "student_programmes", "students"
   add_foreign_key "students", "teachers"
   add_foreign_key "tasks", "project_timelines"
   add_foreign_key "teachers", "universities"
