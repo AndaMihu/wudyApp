@@ -4,6 +4,10 @@ class Company < ApplicationRecord
 
   has_one :contract
 
+  belongs_to :company_user
+
+  accepts_nested_attributes_for :company_user
+
   #has_many :student
 
   has_many :company_position

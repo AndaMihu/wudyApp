@@ -7,17 +7,7 @@ class CompanyUsers::RegistrationsController < Devise::RegistrationsController
   end 
 
 def create
-   
-    @company = Company.new(name: params[:company_user][:company][:name])
-    if @company.save
-    params[:company_user][:company_id] = @company.id
 
-
-    @project_timeline = ProjectTimeline.new
-    @project_timeline.company_id = @company.id
-    @project_timeline.save
-
-    end
 
       build_resource(sign_up_params)
       resource.save

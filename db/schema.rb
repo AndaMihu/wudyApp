@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_090127) do
+ActiveRecord::Schema.define(version: 2018_12_19_140819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2018_12_19_090127) do
     t.string "country"
     t.string "internship_address"
     t.string "city"
+    t.bigint "company_user_id"
+    t.index ["company_user_id"], name: "index_companies_on_company_user_id"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
 
@@ -51,11 +53,9 @@ ActiveRecord::Schema.define(version: 2018_12_19_090127) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "job_position"
-    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mobile_phone"
-    t.index ["company_id"], name: "index_company_users_on_company_id"
     t.index ["email"], name: "index_company_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_company_users_on_reset_password_token", unique: true
   end
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_090127) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "companies", "company_users"
   add_foreign_key "companies", "industries"
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"

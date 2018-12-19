@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :contracts
   resources :my_profile
   resources :companies
+  resources :company_profile
+
   resources :tests
   resources :internship_coaches
   resources :project_timeline
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   get '/student_dashboard' => 'student_dashboard#index'
 
 
-  #patch '/my_profile/update' => 'my_profile#update'
+  patch '/my_profile/update' => 'my_profile#update'
 
   get '/my_profile/success' => 'my_profile#success'
   get '/my_profile/error' => 'my_profile#error'

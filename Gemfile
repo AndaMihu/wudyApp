@@ -79,9 +79,8 @@ gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 gem "chartkick"
 
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 6.0.0"
 
-gem "aws-sdk", '~> 2'
 
 gem 'simple_form'
 

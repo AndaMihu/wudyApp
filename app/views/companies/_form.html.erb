@@ -1,0 +1,36 @@
+<%= form_with(model: company, local: true) do |form| %>
+
+<div id="company-info" >
+    <h3>Company info </h3>
+
+  <%= form.text_field :name, placeholder: "Company name" %><br>
+ 
+  <%= form.text_field :company_description, placeholder: "Company description" %><br>
+  
+  <%= form.text_field :employees_number, placeholder: "Employees number" %>
+
+ <%= form.text_field :website, placeholder: "Website" %>
+
+
+  </div>
+
+<div id="internship-info" >
+    <h3>Internship info </h3>
+
+ <%= form.text_field :internship_description, placeholder: "Internship description" %>
+
+  <%= form.text_field :city, placeholder: "City" %>
+
+  <%= form.text_field :available_spots, placeholder: "Available spots" %><br>
+
+  <%= form.label :industry %><br>
+  <%= form.collection_select(:industry_id, @industry, :id, :name, :selected => params[:id]) %>
+
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

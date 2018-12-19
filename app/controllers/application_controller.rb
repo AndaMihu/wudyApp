@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
         when Teacher
             students_path
         when CompanyUser
-            new_project_timeline_path
+            if current_company_user.company.nil?
+            new_company_path
+            else
+            project_timeline_path 
+            end   
         end
       end
 end

@@ -57,14 +57,18 @@
             </li>
             <% end %> 
 
-            <% if student_signed_in? || teacher_signed_in? %>
              <li>
                 <span>05</span>
-                <h1>
+                <h1> 
+                    <% if student_signed_in? || teacher_signed_in? %>
                     <%= link_to "My profile", my_profile_index_path %>
-                </h1>
-            </li>
+                    <% else company_user_signed_in?%> 
+                    <%= link_to "Company profile", company_profile_index_path %>
             <% end %>
+
+                </h1>
+
+            </li>
             
             <br>
 
