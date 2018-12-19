@@ -1,4 +1,4 @@
-<%= form_for :student, url: my_profile_path(current_student), action: :update, method: :patch  do |form| %>
+<%= form_for :student, url: my_profile_path(@student), action: :update, method: :patch  do |form| %>
   
   <%if current_student.name.nil? %>
   <%= form.text_field :name, placeholder: "Name" %>
