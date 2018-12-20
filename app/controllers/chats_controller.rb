@@ -8,7 +8,10 @@ class ChatsController < ApplicationController
     @message = Chat.where(teacher_id: current_teacher.id)
     @st_name = Student.where(id: params[:student_id]).first
     @st_response = Chat.where(student_id: params[:student_id]).sort_by(&:created_at)
-    else
+
+    elsif student_signed_in?
+
+    @test = Chat.where(student_id: current_student.id).group_by(&:created_at)
     @chats_student = Chat.where(student_id: current_student.id).sort_by(&:created_at)
     @response = Chat.where(teacher_id: current_student.teacher_id).sort_by(&:created_at)
     @chats = Chat.all.sort_by(&:created_at)
@@ -40,3 +43,4 @@ end
       params.require(:chat).permit(:message, :teacher_id, :student_id)
     end
 end
+

@@ -1,4 +1,4 @@
-<div class="container clearfix">
+ <div class="container clearfix">
  <% if teacher_signed_in? %>
         <div class="people-list" id="people-list">
             
@@ -19,7 +19,6 @@
         </div>
     </div>
 <% end %>
-
 <div class="chat">
   <div class="chat-header clearfix">
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_10.jpg" alt="avatar" />
@@ -85,26 +84,27 @@
           </li>
     <% elsif student_signed_in? %> 
 
-        <% @chats_student.each do |chat| %>
+<% @test.each do |t| %>
+    <% if t[1][0].teacher_id.nil? %>
+        <li>
             <div class="message other-message float-right">
-                <p class="time" style="font-size: 12px"><%= chat.created_at %></p>
-                <p class="m-0 chat-message"><%= chat.message %></p>
+                <p class="m-0 chat-message"><%= t[1][0].message %></p>
             </div>
-        <% end %>
-        </li>
+        </li><br><br>
+
+    <% elsif t[1][0].student_id.present?%>
 
         <li>
             <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle online"></i> <%= current_student.teacher.name%></span>
+                <span class="message-data-name"><i class="fa fa-circle online"></i> <%= current_student.teacher.name%></span>
             </div>
-
-        <% @response.each do |chat| %>
             <div class="message my-message">
-                <p class="time" style="font-size: 12px"><%= chat.created_at %></p>
-                <p class="m-0 chat-message"><%= chat.message %></p>
+                <p class="m-0 chat-message"><%= t[1][0].message %></p>
             </div>
-        <% end %>
-          </li>
+    <% end %>
+<% end %>
+  
+
     <% end %>
  
         </ul>
@@ -132,7 +132,7 @@
                   <%= form.hidden_field :teacher_id, :value => current_teacher.id %>
                   <%= form.hidden_field :student_id, :value => params[:student_id] %>
 
-                <% else %>
+                <% else student_signed_in? %>
                     <%= form.hidden_field :student_id, :value => current_student.id %>
                 <% end %>
                 </div>

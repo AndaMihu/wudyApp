@@ -75,8 +75,23 @@
             <br>
 
             <li class="logout">
+                <% if teacher_signed_in? %>
                 <%= link_to destroy_teacher_session_path, method: :delete do %>
-                    Log out
+                                    Log out
+
+                <% end %>
+                <% elsif student_signed_in? %>
+                <%= link_to destroy_student_session_path, method: :delete do %>
+                                    Log out
+
+                <% end %>
+
+                <% else company_user_signed_in? %>
+                <%= link_to destroy_comapny_user_session_path, method: :delete do %>
+                                    Log out
+
+                <% end %>
+
                 <%end%>
             </li>
         </ul>
