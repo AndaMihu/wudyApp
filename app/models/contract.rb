@@ -1,6 +1,6 @@
 class Contract < ApplicationRecord
   belongs_to :teacher
-  belongs_to :student
+  has_many :students
   belongs_to :contact_language
   belongs_to :company
 

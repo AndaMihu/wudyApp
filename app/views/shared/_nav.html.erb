@@ -39,11 +39,11 @@
                 <span>03</span>
                 <h1>
                 <% if student_signed_in? %>
-                    <%= link_to "Contract", new_contract_path %>
+                    <%= link_to "Contract", student_contracts_path(current_student) %>
                 <% elsif company_user_signed_in? %>
                     <%= link_to "My profile", my_profile_index_path %>
                 <% else teacher_signed_in?%> 
-                    <%= link_to "Chat", meetings_path %>
+                    <%= link_to "Chat", chats_path %>
                 <% end %>
                 </h1>
             </li>
@@ -60,8 +60,10 @@
              <li>
                 <span>05</span>
                 <h1> 
-                    <% if student_signed_in? || teacher_signed_in? %>
+                    <% if student_signed_in? %>
                     <%= link_to "My profile", my_profile_index_path %>
+                    <% elsif teacher_signed_in? %>
+                    <%= link_to "My profile", teacher_path(current_teacher) %>
                     <% else company_user_signed_in?%> 
                     <%= link_to "Company profile", company_profile_index_path %>
             <% end %>

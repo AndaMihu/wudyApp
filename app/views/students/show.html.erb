@@ -32,7 +32,7 @@
 
 <div class="contact-btn">
 <div class="meeting"> Meetings </div>
-<a class="email" href="mailto:andammihu@gmail.com">Contact</a>
+<%= link_to 'Contact', student_chats_path(@student), class:"contact" %>
 <%= link_to 'Internship contract', student_contracts_path(@student), class:"contract" %>
 </div>
 

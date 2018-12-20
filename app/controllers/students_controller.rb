@@ -1,9 +1,8 @@
 class StudentsController < ApplicationController
     def index
         @students = Student.where(teacher_id: current_teacher.id)  
-        
         @programme = StudentProgramme.all
-
+        @company = Contract.all 
     end
     
     def new 
@@ -19,21 +18,15 @@ class StudentsController < ApplicationController
 
     def update
         @student = current_student
-    
-        if @student.update_attributes(student_params)
-              respond_to do |format|
-                if @student.save
-                      format.html { redirect_to '/my_profile/success' }
-                    else
-                      format.html { redirect_to '/my_profile/error' }
-                  end
-              end
-          end 
+        @student.update(student_params)
+             
+           
     end
 
 private
     def student_params
-        params.require(:student).permit(:name, :education, :work_experience)
+        params.require(:student).permit(:name, :email, :mobile_phone, :education, :work_experience, :volunteer_experience, :hard_skills, :soft_skills, :interests, :avatar)
+  
     end
 
 

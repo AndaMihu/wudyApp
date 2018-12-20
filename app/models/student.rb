@@ -1,21 +1,18 @@
 class Student < ApplicationRecord
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   belongs_to :programme
   
-  #belongs_to :company
-  
   has_one :contract
+  has_one :company, through: :contract
+
 
   has_many :event 
 
  # accepts_nested_attributes_for :programme
   accepts_nested_attributes_for :contract
   accepts_nested_attributes_for :event
-
-
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
-  do_not_validate_attachment_file_type :avatar
-
 
   belongs_to :teacher
 

@@ -19,20 +19,20 @@ class MyProfileController < ApplicationController
     end
 
     def update
-        @programmes = Programme.all
         @student = current_student
-    
+        @programmes = Programme.all
+
         if @student.update(student_params)
-                      redirect_to my_profile_path(@student), alert: "Your profile is saved!" 
-                else
-                     render 'edit', alert: "Oops! There was a problem, please try again"
-                  end
-              end
+            redirect_to root_path
+        else
+            render 'edit'
+        end
+    end         
 
   
 private
     def student_params
-        params.require(:student).permit(:name, :email, :mobile_phone, :education, :work_experience, :volunteer_experience, :hard_skills, :soft_skills, :interests, :avatar)
+        params.require(:student).permit(:name, :email, :mobile_phone, :education, :programme_id, :work_experience, :volunteer_experience, :hard_skills, :soft_skills, :interests, :avatar)
     end
 
 end

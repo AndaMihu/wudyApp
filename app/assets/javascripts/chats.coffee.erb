@@ -1,0 +1,26 @@
+ $(document).ready =>
+      username = ''
+
+      updateChat = (data) ->
+        $('.chat-history').append """
+        <div class="message other-message float-right">
+
+                <p class="m-0 chat-message">#{data.message}</p>
+          </div>
+          
+        """
+        return
+
+    
+      $('#chat-form').on 'ajax:success', (data) ->
+        $('#chat-form')[0].reset()
+        return
+
+      pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
+        cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
+        encrypted: true)
+      channel = pusher.subscribe('chat')
+      channel.bind 'new', (data) ->
+        updateChat data
+        return
+      return

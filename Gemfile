@@ -81,6 +81,12 @@ gem "chartkick"
 
 gem "paperclip", "~> 6.0.0"
 
+gem 'pusher'
+gem 'bootstrap'
+gem 'handlebars_assets'
+
+gem 'listjs-rails'
+
 
 gem 'simple_form'
 

@@ -3,4 +3,8 @@ class InternshipCoachesController < ApplicationController
         @teacher = Teacher.where(id: current_student.teacher_id).first
         @uni = University.where(id: 1).first
     end
+
+    def show
+
+    end 
 end

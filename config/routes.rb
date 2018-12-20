@@ -1,16 +1,28 @@
 Rails.application.routes.draw do
+  get 'chats/create'
+  get 'chats/new'
+  get 'chats/show'
+  get 'chats/index'
   resources :contracts
   resources :my_profile
   resources :companies
   resources :company_profile
-
   resources :tests
   resources :internship_coaches
   resources :project_timeline
   resources :students
   resources :task
   resources :events
-
+  #resources :teachers
+  resources :chats
+  
+  
+  resources :students do
+    resources :chats
+  end
+  resources :teachers do
+    resources :chats
+  end
 
   devise_for :students,              
   :controllers => { :registrations => 'users/registrations' },

@@ -10,10 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 //= require my_profile
 
-//= require jquery
 
+//= require jquery
+//= require list
+//= require handlebars
+//= require popper
+//= require bootstrap 
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-sprockets

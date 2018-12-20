@@ -1,0 +1,145 @@
+<div class="container clearfix">
+ <% if teacher_signed_in? %>
+        <div class="people-list" id="people-list">
+            
+            <div class="search">
+                <input type="text" placeholder="search" />
+                <i class="fa fa-search"></i>
+            </div>
+
+            <ul class="list">
+                <% @students.each do |st| %>
+                <li class="clearfix">
+                <div class="about">
+                    <div class="name"><%= st.email%></div>
+                </div>
+                </li>
+                <% end %> 
+            </ul>
+        </div>
+    </div>
+<% end %>
+
+<div class="chat">
+  <div class="chat-header clearfix">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_10.jpg" alt="avatar" />
+        <div class="chat-about">
+        <% if teacher_signed_in? %>
+          <div class="chat-with">Chat with <%= @st_name.name %></div>
+        <% elsif %>
+          <div class="chat-with">Chat with <%= current_student.teacher.name %></div>
+        <% end %>
+          <div class="chat-num-messages">already 1 902 messages</div>
+        </div>
+</div> <!-- end chat-header -->
+      
+<div class="chat-history">
+    <ul>
+        <li class="clearfix">
+            <div class="message-data align-right">
+
+            <% if teacher_signed_in? %>
+            <% if @chats_teacher.empty? %>
+                <p>  </p>
+            <% else %>
+              <span class="message-data-name">
+               <%= current_teacher.name%> 
+               </span> 
+            <% end %>   
+            <% elsif student_signed_in?  %>
+             <span class="message-data-name">
+                <%= current_student.name%>
+            </span> 
+            <% end %>
+
+            <% if teacher_signed_in? %>
+            
+                <% @chats_teacher.each do |chat| %>
+                 <div class="message other-message float-right">
+                    <p class="time" style="font-size: 12px">
+                     <%= chat.created_at %>
+                    </p>
+                    <p class="m-0 chat-message">
+                     <%= chat.message %>
+                    </p> 
+                </div>
+            <% end %>
+        </li>
+
+       
+        <li>
+            <div class="message-data">
+            <% if @st_response.empty? %>
+       <p>Start a conversation with <%= @st_name.name %> </p>
+       <% else %>
+              <span class="message-data-name"><i class="fa fa-circle online"></i> <%= @st_name.name %> </span>
+          <% end %>
+            </div>
+
+        <% @st_response.each do |chat| %>
+            <div class="message my-message">
+                <p class="time" style="font-size: 12px"><%= chat.created_at %></p>
+                <p class="m-0 chat-message"><%= chat.message %></p>
+            </div>
+        <% end %>
+          </li>
+    <% elsif student_signed_in? %> 
+
+        <% @chats_student.each do |chat| %>
+            <div class="message other-message float-right">
+                <p class="time" style="font-size: 12px"><%= chat.created_at %></p>
+                <p class="m-0 chat-message"><%= chat.message %></p>
+            </div>
+        <% end %>
+        </li>
+
+        <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> <%= current_student.teacher.name%></span>
+            </div>
+
+        <% @response.each do |chat| %>
+            <div class="message my-message">
+                <p class="time" style="font-size: 12px"><%= chat.created_at %></p>
+                <p class="m-0 chat-message"><%= chat.message %></p>
+            </div>
+        <% end %>
+          </li>
+    <% end %>
+ 
+        </ul>
+        
+    </div> <!-- end chat-history -->
+      
+<div class="chat-message clearfix">
+
+    <div class="chat-text-input">
+              <%= form_with(model: @chat, remote: true, format: :json, id: 'chat-form') do |form| %>
+                <% if @chat.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+                    <ul>
+                      <% @chat.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <div class="field position-relative">
+                  <%= form.text_field :message, id: :message, class: "form-control", required: true , placeholder: "Type your message"%>
+                
+                <% if teacher_signed_in? %>
+                  <%= form.hidden_field :teacher_id, :value => current_teacher.id %>
+                  <%= form.hidden_field :student_id, :value => params[:student_id] %>
+
+                <% else %>
+                    <%= form.hidden_field :student_id, :value => current_student.id %>
+                <% end %>
+                </div>
+              <% end %>
+            </div>
+        </div>
+          </div>
+        </div>
+
+</div>

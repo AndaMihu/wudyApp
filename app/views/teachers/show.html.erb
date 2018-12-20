@@ -1,0 +1,32 @@
+<div class="st-heading">
+<h1>My profile</h1>
+</div>
+
+<div class="one-st"> 
+
+<div class="info">
+
+    <div class="personal">
+
+        <p class="avatar">Profile picture: <%= image_tag current_teacher.avatar.url(:medium) %>
+        <p style="text-transform:capitalize"><%= current_teacher.name %></p>
+        <p><%= current_teacher.email %></p>
+
+     </div>
+
+    <div class="uni">
+    <h3>University</h3>
+        <p style="text-transform:capitalize"><%= current_teacher.university_id %></p>
+    </div>
+
+    <div class="pro">
+    <h3>Programme</h3>
+    <p style="text-transform:capitalize"><%= current_teacher.specialization %></p>
+
+    </div>
+</div>
+<%= link_to 'Edit profile', edit_teacher_path(current_teacher), :class => "editBtn" %>
+
+
+</div>
+</div> 

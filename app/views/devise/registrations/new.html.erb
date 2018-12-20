@@ -29,6 +29,12 @@ body{
   </div><br>
   <% end %> 
 
+<% if current_page?(new_teacher_registration_path) %>
+  <div class="field">
+  <%= f.hidden_field :university_id, :value => 1 %>
+  </div>
+<% end %>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

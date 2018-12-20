@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
+
+<h1>Contracts</h1>
+
+<p id="notice"><%= notice %></p>
 <%#= link_to 'Back', contracts_path %>
-<%= @contract.inspect %>
 
 <div class="about">
     <h1>Tell us about you</h1>
@@ -11,9 +14,9 @@
         <th>Programme</th>
     </tr>
     <tr>
-    <td><%= @student.name %></td>
-    <td><%= @student.email %></td>
-    <td style="text-transform:capitalize"><%= @student.programme.name %></td>
+    <td><%= @contract_student.student.name %></td>
+    <td><%= @contract_student.student.email %></td>
+    <td style="text-transform:capitalize"><%= @contract_student.student.programme.name %></td>
     </tr>
     </table>
 
@@ -24,8 +27,8 @@
         <th>Internship type</th>
     </tr>
     <tr>
-    <td><%= @contract.contact_language_id %></td>
-    <td><%= @student.mobile_phone %></td>
+    <td><%= @contract_student.contact_language.name %></td>
+    <td><%= @contract_student.student.mobile_phone %></td>
     </tr>
     </table>
 </div>
@@ -42,9 +45,9 @@
 
     </tr>
     <tr>
-    <td><%= @student.name %></td>
-    <td><%= @student.email %></td>
-    <td><%= @programme %></td>
+    <td><%= @contract_student.company.name %></td>
+    <td><%= @contract_student.company.cvr %></td>
+    <td><%= @contract_student.company.employees_number %></td>
     </tr>
     </table>
 
@@ -58,9 +61,12 @@
 
     </tr>
     <tr>
-    <td><%= @contact_language %></td>
-    <td><%= @student.mobile_phone %></td>
-    <td><%= @internship_type %></td>
+    <td><%= @contract_student.company.company_address %></td>
+    <td><%= @contract_student.company.zip_code %></td>
+    <td><%= @contract_student.company.city %></td>
+    <td><%= @contract_student.company.country %></td>
+    <td><%= @contract_student.company.internship_address %></td>
+
     </tr>
     </table>
 </div>
@@ -80,9 +86,11 @@
     </tr>
 
     <tr>
-    <td><%= @student.name %></td>
-    <td><%= @student.email %></td>
-    <td><%= @programme %></td>
+    <td><%= @contract_student.contact_company_user.name %></td>
+    <td><%= @contract_student.contact_company_user.job %></td>
+    <td><%= @contract_student.contact_company_user.email %></td>
+    <td><%= @contract_student.contact_company_user.phone %></td>
+
     </tr>
     </table>
 </div>
@@ -98,9 +106,9 @@
     </tr>
 
     <tr>
-    <td><%= @student.name %></td>
-    <td><%= @student.email %></td>
-    <td><%= @programme %></td>
+    <td><%= @contract_student.internship_agreement.start_date %></td>
+    <td><%= @contract_student.internship_agreement.end_date %></td>
+    <td><%= @contract_student.internship_agreement.weekly_working_hours %></td>
     </tr>
     </table>
 
@@ -112,9 +120,9 @@
     </tr>
 
     <tr>
-    <td><%= @student.name %></td>
-    <td><%= @student.email %></td>
-    <td><%= @programme %></td>
+    <td><%= @contract_student.internship_agreement.work_tasks %></td>
+    <td><%= @contract_student.internship_agreement.learning_goals %></td>
+    <td><%= @contract_student.internship_agreement.other_comments %></td>
     </tr>
     </table>
 

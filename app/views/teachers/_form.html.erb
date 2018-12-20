@@ -1,0 +1,22 @@
+<%= form_for :teacher, url: teacher_path(current_teacher), action: :update, method: :patch, html: { multipart: true }  do |form| %>
+
+<%if current_teacher.name.nil? %>
+  <%= form.text_field :name, placeholder: "Name" %>
+  <% else %>
+  <%= form.text_field :name, value: current_teacher.name %>
+  <% end %><br>
+
+<% if current_teacher.avatar.nil? %>
+  <%= form.label :name, 'Profile picture' %><br>
+  <%= form.file_field :avatar%>
+  
+  <% else %>
+  <%= form.label :name, 'Profile picture' %><br>
+  <%= image_tag current_teacher.avatar.url(:medium) %>
+  <%= form.file_field :avatar %>
+  <% end %><br>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

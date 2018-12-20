@@ -3,4 +3,6 @@ $('.calendar').fullCalendar(
   $.parseJSON("<%=j render(@event, format: :json).html_safe %>"),
   true
 );
+    add_event_gcal(title,start,end);  
+
 $('.modal').modal('hide');

@@ -24,7 +24,6 @@
         <% end %>
 
     
-       <div class="position">
       
         <% company.position.each do |p| %>
           <% if p.name.nil? %>
@@ -34,16 +33,13 @@
           <% end %>
         <% end %> 
 
-      </div>
-    
-       <div class="industry">
+     
 
         <% if company.industry_id.nil? %>
          <td> not defined yet </td>
         <% else %>
         <td> <%= company.industry.name %></td>    
         <% end %>  
-      </div>
 
         <% if company.city.nil? %>
           <td> no city yet </td>

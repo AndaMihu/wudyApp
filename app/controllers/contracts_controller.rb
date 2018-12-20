@@ -12,7 +12,7 @@ class ContractsController < ApplicationController
   # GET /contracts/1
   # GET /contracts/1.json
   def show
-    @contract = Contract.where(student_id: params[:student_id])
+    @contract_student = Contract.where(student_id: params[:student_id]).first
   end
 
   # GET /contracts/new

@@ -1,13 +1,52 @@
-<%#= @uni.inspect %>
+<div class="st-heading">
+<h1>My internship coach</h1>
+</div>
 
-<h1>Internship coach</h1>
+<div class="one-st"> 
 
-<div class="single-employee row">
-      <div class="info col-xs-8 col-sm-10">
-        <p class="name"><%= @teacher.name %></p>
-        <p class="email"><%= @teacher.email %></p>
-        <p class="mobile"><%= @teacher.specialization %></p>
-        <p class="education"> <%= @uni.name %></p>
+<div class="info">
+
+    <div class="personal">
+
+        <p class="avatar">Profile picture: <%= image_tag @teacher.avatar.url(:medium) %>
+        <p style="text-transform:capitalize"><%= @teacher.name %></p>
+        <p><%= @teacher.email %></p>
+
+     </div>
+
+    <div class="uni">
+    <h3>University</h3>
+        <p style="text-transform:capitalize"><%= @teacher.university_id %></p>
+    </div>
+
+    <div class="pro">
+    <h3>Programme</h3>
+    <p style="text-transform:capitalize"><%= @teacher.specialization %></p>
+
+    </div>
+</div>
+
+<div class="contact">
+
+
+<div class="contact-btn">
+<div class="meeting"> Meetings </div>
+<%= link_to 'Contact', teacher_chats_path(@teacher), class:"contact" %>
+<%#= link_to 'Internship contract', student_contracts_path(@student), class:"contract" %>
+</div>
+
+<div class="meeting-box">
+<h2> Booked meetings </h2><br>
+
+<% if @event.nil? %>
+<h3> You have no meetings booked with your coach</h3>
+<%else %>
+<p>Meeting name: <%= @event.title %></p>
+<p>Date: <%= @event.start %></p>
+<% end %> 
+
+<br><br>
 
 </div>
-       
+</div>
+</div> 
