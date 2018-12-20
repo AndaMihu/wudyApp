@@ -42,8 +42,8 @@
                     <%= link_to "Contract", student_contracts_path(current_student) %>
                 <% elsif company_user_signed_in? %>
                     <%= link_to "My profile", my_profile_index_path %>
-                <% else teacher_signed_in?%> 
-                    <%= link_to "Chat", chats_path %>
+                <%# else teacher_signed_in?%> 
+                    <%#= link_to "Chat", chats_path %>
                 <% end %>
                 </h1>
             </li>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :teachers
+
   get 'chats/create'
   get 'chats/new'
   get 'chats/show'
@@ -40,7 +42,6 @@ Rails.application.routes.draw do
   :controllers => { :registrations => 'company_users/registrations' }
 
 
-  devise_for :teachers
     
   resources :students, :only => [:create, :destroy] do
   resources :events

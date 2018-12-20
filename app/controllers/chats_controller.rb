@@ -2,6 +2,8 @@ class ChatsController < ApplicationController
   def index
     @chats = Chat.all
     if teacher_signed_in?
+      
+    @test2 = Chat.where(student_id: params[:student_id]).group_by(&:created_at)
 
     @chats_teacher = Chat.where(student_id: params[:student_id]).sort_by(&:created_at)
     @students = Student.where(teacher_id: current_teacher.id)
@@ -12,6 +14,7 @@ class ChatsController < ApplicationController
     elsif student_signed_in?
 
     @test = Chat.where(student_id: current_student.id).group_by(&:created_at)
+
     @chats_student = Chat.where(student_id: current_student.id).sort_by(&:created_at)
     @response = Chat.where(teacher_id: current_student.teacher_id).sort_by(&:created_at)
     @chats = Chat.all.sort_by(&:created_at)
