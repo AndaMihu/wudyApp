@@ -1,6 +1,6 @@
 <div class="st-heading">
 <h1>Companies list</h1>
-<h3>Tip: use the filters to make your search faster and easier </h3>
+<!--<h3>Tip: use the filters to make your search faster and easier </h3>-->
 </div>
 
 <div id="students-list">
@@ -18,16 +18,16 @@
         <td class="st-name"><%= link_to company.name, company %> </td>
 
         <% if company.available_spots.nil? %>
-         <td> not defined yet </td>
+          <td> - </td>
         <% else %>
-        <td> <%= company.available_spots %></td>
+          <td> <%= company.available_spots - company.students.count %></td>
         <% end %>
 
     
       
         <% company.position.each do |p| %>
           <% if p.name.nil? %>
-            <td> not defined yet </td>
+            <td> - </td>
           <% else %>
             <td> <%= p.name %> </td>
           <% end %>
@@ -36,13 +36,13 @@
      
 
         <% if company.industry_id.nil? %>
-         <td> not defined yet </td>
+         <td> - </td>
         <% else %>
-        <td> <%= company.industry.name %></td>    
+        <td> <%= company.industry.name %> </td>    
         <% end %>  
 
-        <% if company.city.nil? %>
-          <td> no city yet </td>
+        <% if company.city.empty? %>
+          <td> - </td>
         <% else %>
          <td> <%= company.city %></td>
         <% end %>

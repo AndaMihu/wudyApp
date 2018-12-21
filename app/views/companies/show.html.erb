@@ -1,5 +1,5 @@
 <div class="st-heading">
-<h1>Company profile</h1>
+<h1>Company info</h1>
 </div>
 
 <div class="one-st"> 
@@ -8,27 +8,55 @@
 
     <div class="personal">
 
-        <p class="avatar">Profile picture: <%#= image_tag @teacher.avatar.url(:medium) %>
+        <p class="avatar">Profile picture: <%= image_tag @company.avatar.url(:medium) %>
         <p style="text-transform:capitalize"><%= @company.name %></p>
-        <p><%= @company.city%></p>
 
-     </div>
+    </div>
 
-</div>
+        <div class="uni">
+        <h3>Location</h3>
+            <p style="text-transform:capitalize"><%= @company.city %></p>
+        </div>
 
+        <div class="seats">
+        <h3>Internship available seats</h3>
+        <p style="text-transform:capitalize"><%= @company.available_spots %></p>
+        </div>
 
-</div>
+        <div class="position">
+        <h3>Internship position</h3>
+        <p style="text-transform:capitalize"><%= @company.position.name %></p>
+        </div>
+
+        <div class="position">
+        <h3>Industry</h3>
+        <p style="text-transform:capitalize"><%= @company.industry.name %></p>
+        </div>
+
+        <div class="website">
+        <h3>Website</h3>
+        <p style="text-transform:capitalize"><%= @company.website %></p>
+        </div>
+
+    </div>
+
+    <div class="contact">
+        <h3>Company description</h3>
+        <p style="text-transform:capitalize"><%= @company.company_description %></p>
+
+        <h3>Number of employees</h3>
+        <p style="text-transform:capitalize"><%= @company.employees_number %></p>
+
+        <h3>Internship description</h3>
+        <p style="text-transform:capitalize"><%= @company.internship_description %></p>
+
+        <h3>Number of previous interns</h3>
+        <p style="text-transform:capitalize"><%= @allInterns %></p>
+
+    </div>
+
+<% if company_user_signed_in? %>
+<%= link_to "Edit company details", edit_company_path(@company) %>
+<% end %>
+
 </div> 
-
-
-<p class="name"><%= @company.name %></p>
-<p class="name"><%= @company.company_description %></p>
-<p class="name"><%= @company.employees_number %></p>
-<p class="name"><%= @company.website %></p>
-
-<p class="name"><%= @company.available_spots %></p>
-<p class="name"><%= @company.internship_description %></p>
-
-
-<p class="spots"> <%= @company.available_spots %></p>
-<p class="location"> <%= @company.company_address %></p>

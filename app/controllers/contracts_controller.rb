@@ -18,21 +18,13 @@ class ContractsController < ApplicationController
   # GET /contracts/new
   def new
     @current_contract = Contract.find_by(student_id: current_student.id)
-   
-    if @current_contract.nil?
-       redirect_to new_contract_path
-    else 
-    redirect_to contract_path(@current_contract)
-
-   end
-
+  
     @programmes = Programme.all
 
     @contract = Contract.new
 
-    @company = Company.new
+    @company = Company.all
 
-    @contact_language = ContactLanguage.all
 
     @internship_type = InternshipType.all
   end
@@ -49,12 +41,16 @@ class ContractsController < ApplicationController
   # POST /contracts
   # POST /contracts.json
   def create
+    @company = Company.all
+
+    @internship_type = InternshipType.all
 
     @contract = Contract.new(contract_params)
 
     respond_to do |format|
-      if @contract.save
 
+      if @contract.save
+     
       @contact_company_user = ContactCompanyUser.new(contact_company_user_params)
       @contact_company_user.contract_id = @contract.id 
       @contact_company_user.save
@@ -64,9 +60,6 @@ class ContractsController < ApplicationController
       @internship_agreement.save
 
 
-      @company = Company.new(company_params)
-      @company.contract_id = @contract.id 
-      @company.save
 
         format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
         format.json { render :show, status: :created, location: @contract }
@@ -109,12 +102,12 @@ class ContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contract_params
-      params.require(:contract).permit(:teacher_id, :student_id, :company_user_id)
+      params.require(:contract).permit(:teacher_id, :student_id, :company_user_id, :internship_type_id, :company_id)
     end
 
-    def company_params    
-      params.require(:company).permit(:contract_id, :name, :cvr, :industry_id, :employees_number, :company_address, :zip_code, :city, :country, :website, :internship_address)
-    end 
+  ##  def company_params    
+   ##   params.require(:company).permit(:name, :cvr, :industry_id, :employees_number, :company_address, :zip_code, :city, :country, :website, :internship_address)
+  ##  end 
 
 
     def contact_company_user_params

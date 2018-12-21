@@ -1,6 +1,6 @@
 <div class="st-heading">
 <h1>My profile</h1>
-<h3>Hey! If you have not completed your profile do so by clicking edit profile.</h3>
+<h3>Hey! Before searching or applying for an intership, you must complete your profile.</h3>
 </div>
 
 
@@ -73,18 +73,19 @@
        
 <%= link_to 'Edit profile', edit_my_profile_path(current_student), :class => "editBtn" %>
 
+
 <script>
 function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
 </script>

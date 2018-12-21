@@ -6,13 +6,19 @@
   <%= form.text_field :name, value: current_teacher.name %>
   <% end %><br>
 
+<%if current_teacher.specialization.nil? %>
+  <%= form.text_field :specialization, placeholder: "Specialization" %>
+  <% else %>
+  <%= form.text_field :specialization, value: current_teacher.specialization %>
+  <% end %><br>
+
 <% if current_teacher.avatar.nil? %>
   <%= form.label :name, 'Profile picture' %><br>
   <%= form.file_field :avatar%>
   
   <% else %>
   <%= form.label :name, 'Profile picture' %><br>
-  <%= image_tag current_teacher.avatar.url(:medium) %>
+  <%= image_tag current_teacher.avatar.url(:medium) %><br>
   <%= form.file_field :avatar %>
   <% end %><br>
 

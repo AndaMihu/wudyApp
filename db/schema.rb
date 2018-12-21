@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_081049) do
+ActiveRecord::Schema.define(version: 2018_12_21_175518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2018_12_20_081049) do
     t.string "internship_address"
     t.string "city"
     t.bigint "company_user_id"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["company_user_id"], name: "index_companies_on_company_user_id"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
@@ -94,11 +98,8 @@ ActiveRecord::Schema.define(version: 2018_12_20_081049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "internship_type_id"
-    t.bigint "contact_language_id"
-    t.string "name"
     t.bigint "company_id"
     t.index ["company_id"], name: "index_contracts_on_company_id"
-    t.index ["contact_language_id"], name: "index_contracts_on_contact_language_id"
     t.index ["internship_type_id"], name: "index_contracts_on_internship_type_id"
     t.index ["student_id"], name: "index_contracts_on_student_id"
     t.index ["teacher_id"], name: "index_contracts_on_teacher_id"
@@ -292,7 +293,6 @@ ActiveRecord::Schema.define(version: 2018_12_20_081049) do
   add_foreign_key "company_positions", "positions"
   add_foreign_key "contact_company_users", "contracts"
   add_foreign_key "contracts", "companies"
-  add_foreign_key "contracts", "contact_languages"
   add_foreign_key "contracts", "internship_types"
   add_foreign_key "contracts", "students"
   add_foreign_key "contracts", "teachers"

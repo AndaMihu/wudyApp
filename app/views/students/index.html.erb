@@ -18,7 +18,7 @@
 <% @students.each do |student| %>
     <tr>
      <% if student.name.nil? %>
-         <td> not set </td>
+         <td> - </td>
         <% else %>
         <td class="st-name"><%= link_to student.name, student %> </td>
         <% end %>
@@ -26,29 +26,19 @@
         <td> <%= student.email %></td>
 
         <% if student.programme_id.nil? %>
-         <td> not defined yet </td>
+         <td> - </td>
         <% else %>
           <td> <%= student.programme.name %></td>
         <% end %>
+       
+          <% if student.company.nil? %>
+         <td> - </td>
+        <% else %>
+          <td> <%= student.company.name %></td>
+        <% end %>
 
-         <div class="position">
 
-        <% @company.each do |c| %>
-         
-            <td> <%= c.company_id %> </td>
-        <% end %> 
 
-      </div>
-    
-
-    
-<!--
-        <%# if student.company_id.nil? %>
-         <td> not defined yet </td>
-        <%# else %>
-          <td> <%#= student.company.name %></td>    
-        <%# end %>  
--->
         <%# if student.position_id.nil? %>
           <!--<td> not defined yet </td>-->
         <%# else %>

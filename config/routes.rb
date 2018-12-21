@@ -72,5 +72,7 @@ Rails.application.routes.draw do
   #post '/events/:calendar_id', to: 'meetings#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
 get '/meetings' => 'meetings#index'
+
+get '/acceptance' => 'acceptance#index'
  
 end

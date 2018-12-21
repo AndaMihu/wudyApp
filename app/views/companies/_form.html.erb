@@ -4,7 +4,17 @@
     <h3>Company info </h3>
 
   <%= form.text_field :name, placeholder: "Company name" %><br>
- 
+
+  <%= form.text_field :cvr, placeholder: "CVR" %><br>
+
+  <%= form.text_field :company_address, placeholder: "Street name and number" %><br>
+
+  <%= form.text_field :zip_code, placeholder: "Zip code" %><br>
+
+  <%= form.text_field :city, placeholder: "City" %><br>
+
+  <%= form.text_field :country, placeholder: "Country" %><br>
+
   <%= form.text_field :company_description, placeholder: "Company description" %><br>
   
   <%= form.text_field :employees_number, placeholder: "Employees number" %>
@@ -19,12 +29,12 @@
 
  <%= form.text_field :internship_description, placeholder: "Internship description" %>
 
-  <%= form.text_field :city, placeholder: "City" %>
 
-  <%= form.text_field :available_spots, placeholder: "Available spots" %><br>
+<%= form.text_field :available_spots, placeholder: "Available spots" %><br>
 
-  <%= form.label :industry %><br>
-  <%= form.collection_select(:industry_id, @industry, :id, :name, :selected => params[:id]) %>
+<%= form.label :industry %><br>
+
+<%= form.collection_select(:industry_id, @industry, :id, :name, :selected => params[:id]) %>
 
 
 </div>

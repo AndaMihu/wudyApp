@@ -15,13 +15,16 @@ class TeachersController < ApplicationController
 
     def update
         @teacher = current_teacher
-        @teacher.update(teacher_params)
-
+        if @teacher.update(teacher_params)
+            redirect_to teacher_path(@teacher)
+        else
+            render 'edit', alert: "Oops! There was a problem, please try again"
+        end
     end
 
     private
     def teacher_params
-        params.require(:teacher).permit(:name, :avatar)
+        params.require(:teacher).permit(:name, :specialization, :avatar)
     end
 
 end

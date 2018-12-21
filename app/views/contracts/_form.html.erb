@@ -1,3 +1,13 @@
+
+<div class="tab contact-btn" >
+  <button class="tablinks active" onclick="openContract(event, 'student')">Student info</button>
+  <button class="tablinks" onclick="openContract(event, 'company')">Company</button>
+  <button class="tablinks" onclick="openContract(event, 'contact')">Company contact user</button>
+  <button class="tablinks" onclick="openContract(event, 'agreement')">Internship agreement</button>
+</div>
+
+<div id="new-contract">
+
 <%= form_with(model: contract, local: true) do |form| %>
   <% if contract.errors.any? %>
     <div id="error_explanation">
@@ -11,90 +21,137 @@
     </div>
   <% end %>
 
-  <div id="student_info" >
-    <h1>Student info </h1>
 
+<div id="student" class="tabcontent" style="display:block">  
+
+<table>
+<tr class="cl-title">
+  <th>Name</th>
+  <th>Email</th>
+  <th>Mobile phone</th>
+  <th>Study programme</th>
+  <th>Internship type</th>
+</tr>
+
+<tr>
   <% if current_student.name.nil? %>
-  <%= form.text_field :name, placeholder: "Name" %>
+  <td><%= form.text_field :name, placeholder: "Name" %></td>
   <% else %>
-  <%= form.text_field :name, value: current_student.name %>
-  <% end %><br>
-  
+  <td><%= form.text_field :name, value: current_student.name %></td>
+  <% end %>
+
+
+
   <% if current_student.email.nil? %>
-  <%= form.text_field :email, placeholder: "Email" %>
+  <td><%= form.text_field :email, placeholder: "Email" %></td>
   <% else %>
-  <%= form.text_field :email, value: current_student.email %>
-  <% end %><br>
-  
+  <td><%= form.text_field :email, value: current_student.email %></td>
+  <% end %>
+
+
   <% if current_student.mobile_phone.nil? %>
-  <%= form.text_field :mobile_phone, placeholder: "Mobile phone" %>
+  <td><%= form.text_field :mobile_phone, placeholder: "Mobile phone" %></td>
   <% else %>
-  <%= form.text_field :mobile_phone, value: current_student.mobile_phone %>
-  <% end %><br>
+  <td><%= form.text_field :mobile_phone, value: current_student.mobile_phone %></td>
+  <% end %>
+
   
 
- <%= form.collection_select :programme_id, @programmes, :id, :name %><br>
+  <td><%= form.text_field :programme_id, value: current_student.programme.name, disabled:true %></td>
 
 
- <%= form.collection_radio_buttons :contact_language_id, @contact_language, :id, :name, { checked: @contact_language.second.id }%><br>
+  <%#= form.collection_select(:programme_id, @programmes, :id, :name, :selected => params[:id]) %>
 
- <%= form.collection_radio_buttons :internship_type_id, @internship_type, :id, :name, { checked: @internship_type.first.id }%><br>
 
-  </div>
+  <td><%= form.collection_select(:internship_type_id, @internship_type, :id, :name, :selected => params[:id]) %></td>
+</tr>
 
-<div id="company">
-<h1>Company</h1>
-
-    <%= fields_for :company do |f| %>
-    
-    <%= f.text_field :name, placeholder: "Name" %><br>
-    <%= f.text_field :cvr, placeholder: "CVR" %><br>
-    <%= f.hidden_field :industry_id, :value => 1  %>
-    <%= f.text_field :employees_number, placeholder: "Number of employees" %><br>
-    <%= f.text_field :company_address, placeholder: "Company address" %><br>
-    <%= f.text_field :zip_code, placeholder: "Zip code" %><br>
-    <%= f.text_field :city, placeholder: "City" %><br>
-    <%= f.text_field :country, placeholder: "Country" %><br>
-    <%= f.text_field :website, placeholder: "Website" %><br>
-    <%= f.text_field :internship_address, placeholder: "Internship address" %><br>
-    <% end %> 
+</table>
 
 </div>
 
-<div id="contact_user">
-<h1>Contact company user</h1>
-
-    <%= fields_for :contact_company_user do |f| %><br>
-    <%= f.text_field :name, placeholder: "Name" %><br>
-    <%= f.text_field :job, placeholder: "Job" %><br>
-    <%= f.text_field :email, placeholder: "Email" %><br>
-    <%= f.text_field :phone, placeholder: "Mobile phone" %><br>
-  <% end %> 
+<div id="company" class="tabcontent">
+  
+  <%= form.collection_select(:company_id, @company, :id, :name, :selected => params[:id]) %>
 
 </div>
 
-<div id="internship_agreement">
-<h1>Internship agreement</h1>
-    <%= fields_for :internship_agreement do |f| %><br>
-    <%= f.date_select :start_date, placeholder: "Start date" %><br>
-    <%= f.date_select :end_date, placeholder: "End date" %><br>
-    <%= f.text_field :weekly_working_hours, placeholder: "Weekly hours per week" %><br>
-    <%= f.text_field :work_tasks, placeholder: "Work tasks agreed" %><br>
-    <%= f.text_field :learning_goals, placeholder: "Learning goals" %><br>
-    <%= f.text_field :other_comments, placeholder: "Other comments " %><br>
-  <% end %> 
+<div id="contact" class="tabcontent">
 
+<table>
+<tr class="cl-title">
+  <th>Name</th>
+  <th>Job</th>
+  <th>Email</th>
+  <th>Mobile phone</th>
+</tr>
+
+
+
+<tr>
+    <%= fields_for :contact_company_user do |f| %>
+   <td> <%= f.text_field :name, placeholder: "Name" %></td>
+   <td> <%= f.text_field :job, placeholder: "Job" %></td>
+   <td> <%= f.text_field :email, placeholder: "Email" %></td>
+   <td> <%= f.text_field :phone, placeholder: "Mobile phone" %></td>
+  <% end %> 
+</tr>
+</table>
+</div>
+
+<div id="agreement" class="tabcontent">
+<table>
+<tr class="cl-title">
+  <th>Start date</th>
+  <th>End date</th>
+  <th>Weekly working hours</th>
+  <th>Work tasks agreed</th>
+  <th>Learning goals</th>
+  <th>Other comments</th>
+
+</tr>
+
+<tr>
+    <%= fields_for :internship_agreement do |f| %>
+    <td><%= f.date_select :start_date, placeholder: "Start date" %></td>
+    <td><%= f.date_select :end_date, placeholder: "End date" %></td>
+    <td><%= f.text_field :weekly_working_hours, placeholder: "Weekly hours per week" %></td>
+    <td><%= f.text_field :work_tasks, placeholder: "Work tasks agreed" %></td>
+    <td><%= f.text_field :learning_goals, placeholder: "Learning goals" %></td>
+    <td><%= f.text_field :other_comments, placeholder: "Other comments " %></td>
+  <% end %> 
+</tr>
+</table>
 </div>
 
  <div class="field">
-    <%= form.hidden_field :teacher_id, :value => 1  %>
+    <%= form.hidden_field :teacher_id, :value => current_student.teacher_id  %>
   </div>
 
   <div class="field">
     <%= form.hidden_field :student_id, :value => current_student.id %>
   </div>
+</div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
+
+
+<script>
+function openContract(evt, category) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(category).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>

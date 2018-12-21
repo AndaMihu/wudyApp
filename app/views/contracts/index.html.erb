@@ -1,41 +1,58 @@
-<p id="notice"><%= notice %></p>
+<div class="st-heading">
+<h1>Contract</h1>
+</div>
 
-<h1>Contracts</h1>
+<div class="tab contact-btn" >
+  <button class="tablinks active" onclick="openCat(event, 'About')">Tell us about you</button>
+  <button class="tablinks" onclick="openCat(event, 'Company')">Company</button>
+  <button class="tablinks" onclick="openCat(event, 'Person')">Contact person</button>
+  <button class="tablinks" onclick="openCat(event, 'Agreement')">Internship agreement</button>
+</div>
 
-<p id="notice"><%= notice %></p>
-<%#= link_to 'Back', contracts_path %>
+<div id="my-contract">
+<% if @contract_student.nil? || @contract_student.company_id.nil? %>
+    <% if teacher_signed_in? %>
+<p>The student has not completed the contract</p>
+    <% else student_signed_in? %>
+<p>You have not created a contract yet</p>
+    <% end %>
 
-<div class="about">
-    <h1>Tell us about you</h1>
+<%= link_to "Create new contract", new_contract_path, class:"contract"%>
+<%else %>
+
+<div id="About" class="tabcontent" style="display:block">  
+
     <table>
     <tr class="cl-title">
         <th>Name</th>
         <th>Email</th>
         <th>Programme</th>
     </tr>
+
     <tr>
     <td><%= @contract_student.student.name %></td>
     <td><%= @contract_student.student.email %></td>
     <td style="text-transform:capitalize"><%= @contract_student.student.programme.name %></td>
     </tr>
+   
     </table>
 
     <table>
     <tr class="cl-title">
-        <th>Contact language</th>
         <th>Mobile phone</th>
         <th>Internship type</th>
     </tr>
     <tr>
-    <td><%= @contract_student.contact_language.name %></td>
     <td><%= @contract_student.student.mobile_phone %></td>
+    <td><%= @contract_student.internship_type.name %></td>
+
     </tr>
     </table>
 </div>
 
 
-<div class="company">
-    <h1>Company</h1>
+
+<div id="Company" class="tabcontent">  
     <table>
     <tr class="cl-title">
         <th>Name</th>
@@ -73,9 +90,7 @@
 
 
 
-<div class="company_contact">
-    <h1>Company contact person</h1>
-
+<div id="Person" class="tabcontent">  
     <table>
     <tr class="cl-title">
         <th>Name</th>
@@ -95,9 +110,7 @@
     </table>
 </div>
 
-<div class="internship_agreement">
-    <h1>Internship agreement</h1>
-
+<div id="Agreement" class="tabcontent">  
     <table>
     <tr class="cl-title">
         <th>Start date</th>
@@ -125,6 +138,25 @@
     <td><%= @contract_student.internship_agreement.other_comments %></td>
     </tr>
     </table>
-
+<% end %>
+</div>
 
 </div>
+
+<%= link_to "Contract acceptance status", acceptance_path %>
+
+<script>
+function openCat(evt, catName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(catName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>

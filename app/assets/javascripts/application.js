@@ -14,7 +14,6 @@
 
 //= require my_profile
 
-
 //= require jquery
 //= require list
 //= require handlebars
