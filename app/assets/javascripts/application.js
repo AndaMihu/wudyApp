@@ -13,6 +13,7 @@
 
 
 //= require my_profile
+//= require students
 
 //= require jquery
 //= require list

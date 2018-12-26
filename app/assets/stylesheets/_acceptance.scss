@@ -1,0 +1,24 @@
+.user{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.yes{
+    @extend %button;
+}
+.no{
+    @extend %button;
+    background-color: $dark-orange;
+
+}
+
+a, a:link, a:hover{
+    transition:none;
+}
+
+
+.checkMark, .waitMark{
+    margin-top: 20px;
+}

@@ -7,11 +7,21 @@
 <div class="info">
 
     <div class="personal">
-
-        <p class="avatar">Profile picture: <%= image_tag @student.avatar.url(:medium) %>
+        <% if @student.avatar.url(:medium).present? %>
+        <%= image_tag("users.png", alt: "check mark", size: "100x100") %>
+        <% else %>
+        <p class="avatar"><%= image_tag @student.avatar.url(:medium) %>
+        <% end %>
+        <h3>Name</h3>
         <p style="text-transform:capitalize"><%= @student.name %></p>
+        <h3>Email</h3>
         <p><%= @student.email %></p>
+        <h3>Mobile phone</h3>
+        <% if @student.mobile_phone.empty? %>
+        <p> - </p> 
+        <% else %>
         <p><%= @student.mobile_phone %></p>
+        <% end %>
 
      </div>
 
@@ -23,20 +33,94 @@
     <div class="pro">
     <h3>Programme</h3>
     <p style="text-transform:capitalize"><%= @student.programme.name %></p>
-
     </div>
+
+    
 </div>
 
 <div class="contact">
 
 
 <div class="contact-btn">
+<div class="more">Show profile</div>
 <div class="meeting"> Meetings </div>
 <%= link_to 'Contact', student_chats_path(@student), class:"contact" %>
 <%= link_to 'Internship contract', student_contracts_path(@student), class:"contract" %>
+</div><br><br>
+
+<div class="profile-box">
+
+<div class="tab contact-btn" >
+  <button class="tablinks" onclick="openCity(event, 'Work')">Work experience</button>
+  <button class="tablinks" onclick="openCity(event, 'Skills')">Skills</button>
+  <button class="tablinks" onclick="openCity(event, 'Matrix')">Internship matrix</button>
 </div>
 
-<div class="meeting-box">
+
+<div id="profile">
+
+<div id="Work" class="tabcontent" style="display:block">
+<table>
+
+   <tr class="cl-title">
+    <th>Education</th>
+    <th>Work experience</th>
+    <th>Volunteer experience</th>
+  </tr>
+
+  <tr>
+        <td> <%= @student.education %></td>
+        <td> <%= @student.work_experience %></td>
+        <td> <%= @student.volunteer_experience %></td>
+  </tr>
+  </table>
+
+</div>
+
+<div id="Skills" class="tabcontent">
+<table>
+
+   <tr class="cl-title">
+    <th>Hard skills</th>
+    <th>Soft skills</th>
+    <th>Interests</th>
+  </tr>
+
+  <tr>
+        <td><%= @student.hard_skills %></td>
+        <td><%= @student.soft_skills %></td>
+        <td><%= @student.interests %></td>
+  </tr> 
+  </table>
+
+</div>
+
+<div id="Matrix" class="tabcontent">
+<table>
+
+   <tr class="cl-title">
+    <th>Tasks/skills I am good at and I want to improve</th>
+    <th>Tasks/skills I am good at I don't want to improve</th>
+    <th>Tasks/skills I am not good at and I want to improve</th>
+    <th>Tasks/skills I am good at and I don't want to improve</th>
+
+  </tr>
+
+  <tr>
+        <td><%= @student.good_want %></td>
+        <td><%= @student.good_not %></td>
+        <td><%= @student.bad_want %></td>
+        <td><%= @student.bad_not %></td>
+
+  </tr> 
+  </table>
+
+</div>
+</div>
+</div>
+
+
+<div class="meeting-box" style="display:none">
 <h2> Booked meetings </h2><br>
 
 <% if @event.nil? %>
@@ -50,6 +134,7 @@
 <%= link_to 'Book a meeting', student_events_path(@student), class:"meeting" %>
 
 </div>
+</div>
 
 
 </div>
@@ -57,3 +142,36 @@
 
 
 </div> 
+
+
+<script>
+$(document).ready(function(){
+    $(".more").click(function(){
+      $(".profile-box").show();
+        $(".meeting-box").hide();
+
+    });
+    $(".meeting").click(function(){
+      $(".profile-box").hide();
+      $(".meeting-box").show();
+
+    });
+  });
+
+
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+
+</script>

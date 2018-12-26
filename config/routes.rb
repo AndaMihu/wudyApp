@@ -51,6 +51,18 @@ Rails.application.routes.draw do
     resources :contracts
   end
 
+  resources :teachers do
+    resources :acceptance
+  end
+
+  resources :contract do
+    resources :acceptance
+  end
+
+  resources :company_user do
+    resources :acceptance
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'frontpage#index'
   get '/student_dashboard' => 'student_dashboard#index'
@@ -74,5 +86,9 @@ Rails.application.routes.draw do
 get '/meetings' => 'meetings#index'
 
 get '/acceptance' => 'acceptance#index'
+get '/acceptance/success' => 'acceptance#success'
+
+put '/acceptance' => 'acceptance#update_bool'
+
  
 end

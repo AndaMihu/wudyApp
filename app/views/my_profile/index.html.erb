@@ -8,6 +8,8 @@
   <button class="tablinks active" onclick="openCity(event, 'Basic')">Basic info</button>
   <button class="tablinks" onclick="openCity(event, 'Work')">Work experience</button>
   <button class="tablinks" onclick="openCity(event, 'Skills')">Skills</button>
+  <button class="tablinks" onclick="openCity(event, 'Matrix')">Internship matrix</button>
+
 </div>
 
 <div id="my-profile">
@@ -68,6 +70,27 @@
 
 </div>
 
+<div id="Matrix" class="tabcontent">
+<table>
+
+   <tr class="cl-title">
+    <th>Tasks/skills I am good at and I want to improve</th>
+    <th>Tasks/skills I am good at I don't want to improve</th>
+    <th>Tasks/skills I am not good at and I want to improve</th>
+    <th>Tasks/skills I am good at and I don't want to improve</th>
+
+  </tr>
+
+  <tr>
+        <td><%= current_student.good_want %></td>
+        <td><%= current_student.good_not %></td>
+        <td><%= current_student.bad_want %></td>
+        <td><%= current_student.bad_not %></td>
+
+  </tr> 
+  </table>
+
+</div>
 <!--<p class="cv">Resume:<%#= current_student.interests %></p>NOVOREMUSE-->
 </div>
        

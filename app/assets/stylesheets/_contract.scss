@@ -2,6 +2,9 @@
     @extend %table;
     width: 60%;
     height: 400px;
+    .btn{
+      @extend %button;
+    }
 }
 #new-contract{
   @extend %table;

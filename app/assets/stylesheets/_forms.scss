@@ -154,7 +154,7 @@ $margin: 5px;
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="number"] {
+input[type="number"], textarea {
   @extend %form-elements;
   @extend %input;
 }

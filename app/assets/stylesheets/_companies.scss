@@ -1,0 +1,33 @@
+#companies-list {
+    @extend %table;
+
+table{
+    width:85%;
+    padding:15px;
+}
+.st-name a{
+    font-weight: bold;
+    text-transform: capitalize;  
+}
+
+}
+
+.contact{
+    text-align: left;
+}
+
+.apply{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 100px;
+    .btn{
+        @extend %button;
+        width:20%;
+        background-color: $light-orange;
+    }
+   
+}
+
+.city, .seats, .position, .industry {
+    border-bottom: 1px solid #bfc0c1;
+}

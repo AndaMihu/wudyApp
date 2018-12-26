@@ -8,25 +8,34 @@ class CompaniesController < ApplicationController
 
         @position = CompanyPosition.all
 
-        #@industry = Industry.includes(:company).where(id: industry_id).pluck(:name)
-
-        #@positions = Company.first.position
-
-        #@interns = Company.first.students.ids
-
     end 
 
     def new
         @company = Company.new
+        @position = Position.new
+        @cPosition = CompanyPosition.new
         @industry = Industry.all
     end
 
     def create
 
     @company = Company.new(company_params)
+    @position = Position.new(position_params)
+    @cPosition = CompanyPosition.new(cPosition_params)
+
     @company.company_user_id= current_company_user.id
 
     if @company.save
+        @position = Position.new(position_params)
+        @position.company_id = @company.id
+        @position.save
+
+        @cPosition = CompanyPosition.new(cPosition_params)
+        @cPosition.company_id = @company.id
+        @cPosition.position_id = 2
+        @cPosition.save
+
+
         redirect_to company_path(@company), notice: 'Company was successfully created.' 
       else
         render 'edit', alert: "Oops! There was a problem, please try again"
@@ -58,4 +67,12 @@ class CompaniesController < ApplicationController
         params.require(:company).permit(:name, :company_address, :country, :cvr, :company_description, :employees_number, :website, :city, :internship_description, :available_spots, :industry_id, :company_user_id)
     end 
 
+    def position_params
+        params.require(:position).permit(:name, :company_id)
+    end
+
+    def cPosition_params
+        params.require(:company_position).permit(:company_id, :position_id)
+
+    end
 end

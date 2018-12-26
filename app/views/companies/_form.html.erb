@@ -29,6 +29,9 @@
 
  <%= form.text_field :internship_description, placeholder: "Internship description" %>
 
+ <%= fields_for :position do |f| %>
+    <%= f.text_field :name, placeholder: "Position" %>
+<% end %>
 
 <%= form.text_field :available_spots, placeholder: "Available spots" %><br>
 

@@ -2,14 +2,16 @@ a,
 a:link,
 a:visited,
 a:hover {
-  color: inherit;
-  font-size: inherit;
   text-decoration: none;
+  color: inherit;
+  /*
+  font-size: inherit;
   -webkit-transition: 100ms opacity ease;
   -o-transition: 100ms opacity ease;
   transition: 100ms opacity ease;
+  */
 }
 
 a:hover {
-  opacity: 0.6;
+  opacity: 0.9;
 }

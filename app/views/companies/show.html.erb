@@ -7,13 +7,16 @@
 <div class="info">
 
     <div class="personal">
-
-        <p class="avatar">Profile picture: <%= image_tag @company.avatar.url(:medium) %>
+        <% if @company.avatar.url(:medium).present? %>
+        <%= image_tag("users.png", alt: "check mark", size: "100x100") %>
+        <% else %>
+        <p class="avatar"> <%= image_tag @company.avatar.url(:medium) %>
+        <% end %>
         <p style="text-transform:capitalize"><%= @company.name %></p>
 
     </div>
 
-        <div class="uni">
+        <div class="city">
         <h3>Location</h3>
             <p style="text-transform:capitalize"><%= @company.city %></p>
         </div>
@@ -28,7 +31,7 @@
         <p style="text-transform:capitalize"><%= @company.position.name %></p>
         </div>
 
-        <div class="position">
+        <div class="industry">
         <h3>Industry</h3>
         <p style="text-transform:capitalize"><%= @company.industry.name %></p>
         </div>
@@ -52,6 +55,10 @@
 
         <h3>Number of previous interns</h3>
         <p style="text-transform:capitalize"><%= @allInterns %></p>
+
+    <div class="apply">
+        <a id="mail" class="btn" href="mailto:markus@vonobelitz.com">Apply now</a>
+    </div>
 
     </div>
 

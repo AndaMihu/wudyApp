@@ -1,13 +1,9 @@
-
-$green: #86BB71;
-$blue: #94C2ED;
-$orange: #E38968;
-$gray: #92959E;
-
 *, *:before, *:after {
   box-sizing: border-box;
 }
-
+.chat-con{
+  width:60%
+}
 li {
   list-style: none;
 
@@ -26,7 +22,7 @@ li {
     border: none;
     padding: 14px;
     color: white;
-    background: #6A6C75;
+    background-color: #6A6C75;
     width: 90%;
     font-size: 14px;
   }
@@ -61,18 +57,20 @@ li {
     padding-left: 8px;
   }
   
-  .status {
-    color: $gray;
-  }
+
+
   
 }
 
 .chat {
-  width: 70%;
+  width: 100%;
   float:left;
-  background: #F2F5F8;
+  background: $input-grey;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  -webkit-box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
+  -moz-box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
+  box-shadow: 0px 0px 14px -1px rgba(110,110,110,0.72);
   
   color: #434651;
   
@@ -95,9 +93,6 @@ li {
       font-size: 16px;
     }
     
-    .chat-num-messages {
-      color: $gray;
-    }
     
     .fa-star {
       float: right;
@@ -117,19 +112,14 @@ li {
       margin-bottom: 15px;
     }
     
-    .message-data-time {
-      color: lighten($gray, 8%);
-      padding-left: 6px;
-    }
     
     .message {      
       color: white;
-      padding: 18px 20px;
       line-height: 26px;
       font-size: 16px;
       border-radius: 7px;
       margin-bottom: 30px;
-      width: 90%;
+      width: 60%;
       position: relative;
       
       &:after {
@@ -141,21 +131,21 @@ li {
         width: 0;
         position: absolute;
         pointer-events: none;
-        border-bottom-color: $green;
+        border-bottom-color: $yellow-green;
         border-width: 10px;
         margin-left: -10px;
       }
     }
     
     .my-message {
-      background: $green;
+      background: $yellow-green;
     }
     
     .other-message {
-      background: $blue;
+      background: $light-green;
       
       &:after {
-        border-bottom-color: $blue;
+        border-bottom-color: $light-green;
         left: 93%;
       }
     }
@@ -163,7 +153,7 @@ li {
   }
   
   .chat-message {
-    padding: 30px;
+    padding: 20px;
     
     textarea {
       width: 100%;
@@ -185,7 +175,7 @@ li {
     
     button {
       float: right;
-      color: $blue;
+      color: $light-green;
       font-size: 16px;
       text-transform: uppercase;
       border: none;
@@ -194,7 +184,7 @@ li {
       background: #F2F5F8;
       
       &:hover {
-        color: darken($blue, 7%);
+        color: darken($light-green, 7%);
       }
     }
   }
@@ -204,17 +194,10 @@ li {
     margin-right: 3px;
     font-size: 10px;
   }
-  
-.online {
-  color: $green;
-}
-  
-.offline {
-  color: $orange;
-}
+
 
 .me {
-  color: $blue;
+  color: $light-green;
 }
 
 .align-left {

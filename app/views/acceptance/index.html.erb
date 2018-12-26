@@ -1,5 +1,150 @@
-<h2>The contract has been submitted</h2>
+<%#= @contract_id.inspect %><br>
 
-<h3>Internship coach </h3>
-<h3>Student</h3>
-<h3>Company</h3>
+<div class="st-heading">
+<h1>Contract</h1>
+<h2>The contract has been submitted by the student</h2>
+
+</div>
+
+<div id="my-contract">
+
+
+<div class="user">
+
+
+    <div class="coach"><!----------Internship coach begins ------------>
+
+        <h2>Internship coach </h2>
+
+            <% if teacher_signed_in? %><!-------if Teacher signed in begins-------->
+
+        <% if @contract_status_teacher == false %>
+            <div id="question">
+            <p>Do you accept the contract?</p><br><br>
+                <div class="q-btn">
+                <%= link_to "Yes", acceptance_path, method: :put, class:"yes" %>
+                <%= link_to "No", :back, class:"no" %>
+                </div>
+            </div>
+
+        <% else @contract_status_teacher == true %>
+            <div id="yes" class="checkMark">
+            <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% end %>
+
+<!-------if Teacher signed in ends-------->
+
+    <%# elsif %>
+
+     <%# if @teacher_user == false %>
+            <div class="waitMark">
+            <%#= image_tag("wait.png", alt: "check mark", size: "40x40") %>
+            </div>
+
+        <%# else @teacher_user == true %>
+            <div id="yes" class="checkMark">
+            <%#= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <%# end %>
+
+    <% end %>
+
+    <% if student_signed_in? %><!-------if Student signed in begins-------->
+        <% if @contract_status == false %>
+            <div class="waitMark">
+            <%= image_tag("wait.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% else %>
+            <div id="yes" class="checkMark">
+            <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% end %>
+
+    <% end %><!-------if Student signed in ends-------->
+
+   <% if company_user_signed_in? %><!-------if Company user signed in begins-------->
+
+        <% if @teacher_user == false %>
+            <div class="waitMark">
+            <%= image_tag("wait.png", alt: "check mark", size: "40x40") %>
+            </div>
+
+        <% else @teacher_user == true %>
+            <div id="yes" class="checkMark">
+            <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% end %>
+<% end %> 
+<!-------if Company user signed in ends-------->
+
+</div><!---------- Internship coach ends ---------->
+    
+
+<div class="student"><!----------Student begins ------------>
+
+    <h2>Student</h2>
+    <div class="checkMark">
+        <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+    </div>
+
+</div><!-------- Student ends --------->
+
+
+<div class="company"><!----------Company begins ------------>
+
+
+<h2>Company</h2>
+
+<% if company_user_signed_in? %>
+
+ <% if @contract_status_user == false %>
+        <div id="question">
+        <p>Do you accept the contract?</p><br><br>
+            <div class="q-btn">
+            <%= link_to "Yes", acceptance_path, method: :put, class:"yes" %>
+            <%= link_to "No", :back, class:"no" %>
+            </div>
+        </div>
+
+    <% else @contract_status_user == true %>
+        <div id="yes" class="checkMark">
+        <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+        </div>
+    <% end %>
+
+    <% elsif teacher_signed_in? %><!-------if Teacher signed in begins-------->
+
+
+        <% if @company_user == false %>
+            <div class="waitMark">
+            <%= image_tag("wait.png", alt: "check mark", size: "40x40") %>
+            </div>
+
+        <% else @company_user == true %>
+            <div id="yes" class="checkMark">
+            <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% end %>
+        
+    
+    <% else student_signed_in? %><!-------if Student signed in begins-------->
+
+        <% if @contract_status_company == false %>
+            <div class="waitMark">
+            <%= image_tag("wait.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% else %>
+            <div id="yes" class="checkMark">
+            <%= image_tag("check.png", alt: "check mark", size: "40x40") %>
+            </div>
+        <% end %>   <!------- if Student signed in ends -------->
+
+<% end %>
+
+
+</div> <!------- Company ends -------->
+
+</div>
+
+</div>

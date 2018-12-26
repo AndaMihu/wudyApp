@@ -30,43 +30,42 @@
   <th>Email</th>
   <th>Mobile phone</th>
   <th>Study programme</th>
-  <th>Internship type</th>
 </tr>
 
 <tr>
   <% if current_student.name.nil? %>
-  <td><%= form.text_field :name, placeholder: "Name" %></td>
+  <td> - </td>
   <% else %>
-  <td><%= form.text_field :name, value: current_student.name %></td>
+  <td><%= current_student.name %></td>
   <% end %>
 
 
 
   <% if current_student.email.nil? %>
-  <td><%= form.text_field :email, placeholder: "Email" %></td>
+  <td> - </td>
   <% else %>
-  <td><%= form.text_field :email, value: current_student.email %></td>
+  <td><%= current_student.email %></td>
   <% end %>
 
 
   <% if current_student.mobile_phone.nil? %>
-  <td><%= form.text_field :mobile_phone, placeholder: "Mobile phone" %></td>
+  <td> - </td>
   <% else %>
-  <td><%= form.text_field :mobile_phone, value: current_student.mobile_phone %></td>
+  <td><%= current_student.mobile_phone %></td>
   <% end %>
 
   
 
-  <td><%= form.text_field :programme_id, value: current_student.programme.name, disabled:true %></td>
+  <td><%= current_student.programme.name %></td>
 
 
   <%#= form.collection_select(:programme_id, @programmes, :id, :name, :selected => params[:id]) %>
 
 
-  <td><%= form.collection_select(:internship_type_id, @internship_type, :id, :name, :selected => params[:id]) %></td>
 </tr>
 
 </table>
+<p>If you want to change these details you have to access <%= link_to "My profile", my_profile_index_path, class:"btn"%> </p>
 
 </div>
 
@@ -77,7 +76,7 @@
 </div>
 
 <div id="contact" class="tabcontent">
-
+<h4>Enter the information about the contact person in the company </h4><br><br>
 <table>
 <tr class="cl-title">
   <th>Name</th>
@@ -102,6 +101,7 @@
 <div id="agreement" class="tabcontent">
 <table>
 <tr class="cl-title">
+  <th>Internship type </th>
   <th>Start date</th>
   <th>End date</th>
   <th>Weekly working hours</th>
@@ -112,21 +112,33 @@
 </tr>
 
 <tr>
+    <td><%= form.collection_select(:internship_type_id, @internship_type, :id, :name, :selected => params[:id]) %></td>
+
     <%= fields_for :internship_agreement do |f| %>
     <td><%= f.date_select :start_date, placeholder: "Start date" %></td>
     <td><%= f.date_select :end_date, placeholder: "End date" %></td>
     <td><%= f.text_field :weekly_working_hours, placeholder: "Weekly hours per week" %></td>
     <td><%= f.text_field :work_tasks, placeholder: "Work tasks agreed" %></td>
     <td><%= f.text_field :learning_goals, placeholder: "Learning goals" %></td>
-    <td><%= f.text_field :other_comments, placeholder: "Other comments " %></td>
+    <td><%= f.text_area :other_comments, placeholder: "Other comments " %></td>
   <% end %> 
+
 </tr>
 </table>
 </div>
 
+ <%= fields_for :contract_teacher_accepts do |a| %>
+  <%= a.hidden_field :teacher_id, :value => current_student.teacher_id  %>
+  <% end %>
+
+
+
+
  <div class="field">
     <%= form.hidden_field :teacher_id, :value => current_student.teacher_id  %>
   </div>
+     
+      
 
   <div class="field">
     <%= form.hidden_field :student_id, :value => current_student.id %>

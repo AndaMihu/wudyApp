@@ -7,9 +7,18 @@
 <div class="info">
 
     <div class="personal">
-        <p class="avatar">Profile picture: <%= image_tag current_teacher.avatar.url(:medium) %>
-        <p style="text-transform:capitalize"><%= current_teacher.name %></p>
-        <p><%= current_teacher.email %></p>
+        <div class="avatar"><%= image_tag current_teacher.avatar.url(:medium) %></div>
+        
+        <div class="name">
+         <h3>Name</h3>
+         <p style="text-transform:capitalize"><%= current_teacher.name %></p>
+        </div>
+
+        <div class="email">
+         <h3>Email</h3>
+         <p><%= current_teacher.email %></p>
+        </div>
+
      </div>
 
     <div class="uni">
@@ -23,9 +32,10 @@
 
     </div>
 </div>
-<%= link_to 'Edit profile', edit_teacher_path(current_teacher), :class => "editBtn" %>
 
 
 </div>
+<%= link_to 'Edit profile', edit_teacher_path(current_teacher), :class => "editBtn" %>
+
 </div> 
 

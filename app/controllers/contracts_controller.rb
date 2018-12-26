@@ -24,6 +24,10 @@ class ContractsController < ApplicationController
     @contract = Contract.new
 
     @company = Company.all
+    
+    @accept = ContractTeacherAccept.new
+
+    @acceptC = ContractCompanyUserAccept.new
 
 
     @internship_type = InternshipType.all
@@ -45,10 +49,13 @@ class ContractsController < ApplicationController
 
     @internship_type = InternshipType.all
 
+    @accept = ContractTeacherAccept.new(accept_params)
+
+    @acceptC = ContractCompanyUserAccept.new(acceptC_params)
+
     @contract = Contract.new(contract_params)
 
     respond_to do |format|
-
       if @contract.save
      
       @contact_company_user = ContactCompanyUser.new(contact_company_user_params)
@@ -59,13 +66,20 @@ class ContractsController < ApplicationController
       @internship_agreement.contract_id = @contract.id
       @internship_agreement.save
 
+      @accept = ContractTeacherAccept.new(accept_params)
+      @accept.contract_id = @contract.id
+      @accept.save
 
+      @acceptC = ContractCompanyUserAccept.new(acceptC_params)
+      @acceptC.contract_id = @contract.id
+      @acceptC.company_id = @contract.company_id
+      @acceptC.save
 
-        format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
-        format.json { render :show, status: :created, location: @contract }
+      
+      format.html { redirect_to student_contracts_path(current_student), notice: 'Contract was successfully updated.' } 
       else
-        format.html { render :new }
-        format.json { render json: @contract.errors, status: :unprocessable_entity }
+        format.html { redirect_to redirect to new_contract_path }
+        
       end
     end
   end
@@ -73,6 +87,7 @@ class ContractsController < ApplicationController
   # PATCH/PUT /contracts/1
   # PATCH/PUT /contracts/1.json
   def update
+    
     respond_to do |format|
       if @contract.update(contract_params)
         format.html { redirect_to @contract, notice: 'Contract was successfully updated.' }
@@ -83,6 +98,7 @@ class ContractsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /contracts/1
   # DELETE /contracts/1.json
@@ -98,6 +114,10 @@ class ContractsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
       @contract = Contract.find(params[:id])
+    end
+
+    def student_params
+      params.require(:student).permit(:name, :email, :mobile_phone)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -118,5 +138,13 @@ class ContractsController < ApplicationController
       params.require(:internship_agreement).permit(:contract_id, :start_date, :end_date, :weekly_working_hours, :work_tasks, :learning_goals, :other_comments)
     end 
 
-    
+    def accept_params
+      params.require(:contract_teacher_accepts).permit(:contract_id,:teacher_id)
+    end
+
+
+    def acceptC_params
+      params.require(:contract_teacher_accepts).permit(:contract_id,:company_id)
+    end
+
 end

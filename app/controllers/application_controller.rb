@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
             if current_company_user.company.nil?
             new_company_path
             else
-            project_timeline_path 
+            company_path(current_company_user.company)
             end   
         end
       end

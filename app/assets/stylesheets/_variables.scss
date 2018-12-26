@@ -130,7 +130,7 @@ $main-padding: 50px;
 %button {
   background-color: $medium-green;
   font-family: 'Noto Serif SC', serif;
-  color: white;
+  color: white !important;
   text-align: center;
   font-weight: 600;
   border-radius: 2px;

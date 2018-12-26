@@ -1,5 +1,7 @@
 <%= form_for :student, url: student_path(current_student), action: :update, method: :patch, html: { multipart: true }  do |form| %>
   
+  <h1>Basic info</h1>
+
   <%if current_student.name.nil? %>
   <%= form.text_field :name, placeholder: "Name" %>
   <% else %>
@@ -19,14 +21,14 @@
   <%= form.text_field :mobile_phone, value: current_student.mobile_phone %>
   <% end %><br>
 
-  
   <% if current_student.education.nil? %>
   <%= form.text_field :education, placeholder: "Education" %>
   <% else %>
   <%= form.text_field :education, value: current_student.education %>
   <% end %><br>
 
- 
+ <h1>Work experience</h1>
+
   <% if current_student.work_experience.nil? %>
   <%= form.text_field :work_experience, placeholder: "Work experience" %>
   <% else %>
@@ -40,6 +42,8 @@
   <%= form.text_field :volunteer_experience, value: current_student.volunteer_experience %>
   <% end %><br>
 
+  <h1>Skills</h1>
+
   <% if current_student.hard_skills.nil? %>
   <%= form.text_field :hard_skills, placeholder: "Hard skills" %>
   <% else %>
@@ -52,14 +56,40 @@
   <% else %>
   <%= form.text_field :soft_skills, value: current_student.soft_skills %>
   <% end %><br>
-
-
  
   <% if current_student.interests.nil? %>
   <%= form.text_field :interests, placeholder: "Interests" %>
   <% else %>
   <%= form.text_field :interests, value: current_student.interests %>
   <% end %><br>
+
+<h1>Tasks </h1>
+
+ <% if current_student.good_want.nil? %>
+  <%= form.text_area :good_want, placeholder: "Tasks I am good at and would like to work with during my internship" %>
+  <% else %>
+  <%= form.text_area :good_want, value: current_student.good_want %>
+  <% end %><br>
+
+
+  <% if current_student.good_not.nil? %>
+  <%= form.text_area :good_not, placeholder: "Tasks I am good at that I don't want to work with during my internship" %>
+  <% else %>
+  <%= form.text_area :good_not, value: current_student.good_not %>
+  <% end %><br>
+ 
+  <% if current_student.bad_want.nil? %>
+  <%= form.text_area :bad_want, placeholder: "Tasks I am not good at and would like to try during my internship" %>
+  <% else %>
+  <%= form.text_area :bad_want, value: current_student.bad_want %>
+  <% end %><br>
+
+<% if current_student.bad_not.nil? %>
+  <%= form.text_area :bad_not, placeholder: "Tasks I am not good at and want to avoid during  my internship" %>
+  <% else %>
+  <%= form.text_area :bad_not, value: current_student.bad_not %>
+  <% end %><br>
+
 
   <% if current_student.avatar.nil? %>
   <%= form.label :name, 'Profile picture' %><br>

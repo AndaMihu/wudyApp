@@ -9,42 +9,31 @@
         </span>
     </button> 
 
+
+<% if student_signed_in? %>
+
     <nav aria-role="navigation">
         <ul>
             <li>
                 <span>01</span>
                 <h1>
-                <% if student_signed_in? %>
+               
                     <%= link_to "Dashboard", student_dashboard_path %>
-                <% elsif teacher_signed_in? %>
-                    <%= link_to "Students Dashboard", students_path %>
-                <% else company_user_signed_in? %>
-                    <%#= link_to "Project timeline", project_timeline_path(@project_timeline) %>
-                <% end %>
+               
                 </h1>
             </li>
             <li>
                 <span>02</span>
                 <h1>
-                 <% if student_signed_in? %>
                     <%= link_to "My internship coach", internship_coaches_path %>
-                <% elsif company_user_signed_in? %>
-                    <%= link_to "Interns", students_path %>
-                <% else teacher_signed_in?%> 
-                    <%= link_to "Calendar", events_path %>
-                <% end %>
+                
                 </h1>
             </li>
             <li>    
                 <span>03</span>
                 <h1>
-                <% if student_signed_in? %>
                     <%= link_to "Contract", student_contracts_path(current_student) %>
-                <% elsif company_user_signed_in? %>
-                    <%= link_to "My profile", my_profile_index_path %>
-                <%# else teacher_signed_in?%> 
-                    <%#= link_to "Chat", chats_path %>
-                <% end %>
+               
                 </h1>
             </li>
             
@@ -60,13 +49,9 @@
              <li>
                 <span>05</span>
                 <h1> 
-                    <% if student_signed_in? %>
+                   
                     <%= link_to "My profile", my_profile_index_path %>
-                    <% elsif teacher_signed_in? %>
-                    <%= link_to "My profile", teacher_path(current_teacher) %>
-                    <% else company_user_signed_in?%> 
-                    <%= link_to "Company profile", company_profile_index_path %>
-            <% end %>
+            
 
                 </h1>
 
@@ -75,26 +60,116 @@
             <br>
 
             <li class="logout">
-                <% if teacher_signed_in? %>
-                <%= link_to destroy_teacher_session_path, method: :delete do %>
-                                    Log out
-
-                <% end %>
-                <% elsif student_signed_in? %>
                 <%= link_to destroy_student_session_path, method: :delete do %>
-                                    Log out
-
-                <% end %>
-
-                <% else company_user_signed_in? %>
-                <%= link_to destroy_company_user_session_path, method: :delete do %>
-                                    Log out
-
-                <% end %>
-
+                Log out
                 <%end%>
             </li>
         </ul>
     </nav>
+<% end %>
+
+
+<% if teacher_signed_in? %>
+
+    <nav aria-role="navigation">
+        <ul>
+            <li>
+                <span>01</span>
+                <h1>
+                 <%= link_to "Students Dashboard", students_path %>
+                </h1>
+            </li>
+            <li>
+                <span>02</span>
+                <h1>
+                    <%= link_to "Calendar", events_path %>
+                </h1>
+            </li>
+            <li>    
+                <span>03</span>
+                <h1>
+                    <%= link_to "Companies list", companies_path %>
+                </h1>
+            </li>
+            
+            <li>
+                <span>04</span>
+                <h1>
+                <%= link_to "My profile", teacher_path(current_teacher) %>
+
+                </h1>
+            </li>
+
+            
+            
+            <br>
+
+            <li class="logout">
+                <%= link_to destroy_teacher_session_path, method: :delete do %>
+                                    Log out
+
+                <% end %>
+                
+            </li>
+        </ul>
+    </nav>
+
+<% end %>
+
+<% if company_user_signed_in? %>
+
+    <nav aria-role="navigation">
+        <ul>
+            <li>
+                <span>01</span>
+                <h1>
+                  <%#= link_to "Project timeline", project_timeline_path(@project_timeline) %>
+                </h1>
+            </li>
+            <li>
+                <span>02</span>
+                <h1>
+                     <%= link_to "Interns", students_path %>
+               
+                </h1>
+            </li>
+            <li>    
+                <span>03</span>
+                <h1>
+                
+                    <%= link_to "My profile", my_profile_index_path %>
+                
+                </h1>
+            </li>
+            
+    
+
+             <li>
+                <span>04</span>
+                <h1> 
+                   
+                    <%= link_to "Company profile", company_profile_index_path %>
+
+                </h1>
+
+            </li>
+            
+            <br>
+
+            <li class="logout">
+               
+                <%= link_to destroy_company_user_session_path, method: :delete do %>
+                                    Log out
+
+
+                <%end%> 
+            </li>
+        </ul>
+    </nav>
+
+<% end %>
+
+
+
     <% end %>
 </header>

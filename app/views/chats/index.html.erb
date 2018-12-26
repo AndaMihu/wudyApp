@@ -1,4 +1,9 @@
- <div class="container clearfix">
+<div class="st-heading">
+<h1>Chat</h1>
+<!--<h3>Tip: use the filters to make your search faster and easier </h3>-->
+</div>
+
+ <div class="container chat-con">
  
  <!--<%# if teacher_signed_in? %>
         <div class="people-list" id="people-list">
@@ -50,9 +55,13 @@
             <% end %>  
 
             <% elsif student_signed_in?  %>
+            <% if @chats_student.empty? %>
+                <p>  </p>
+            <% else %>
              <span class="message-data-name">
                 <%= current_student.name%>
             </span> 
+            <% end %>
             <% end %>
     </li>
 
@@ -93,6 +102,10 @@
     <% @test.each do |t| %>
         <% if t[1][0].teacher_id.nil? %>
             <li>
+                <div class="message-data align-right">
+                    <span class="message-data-name"> <%#= current_student.name%></span>
+                </div>                        
+
                 <div class="message other-message float-right">
                     <p class="m-0 chat-message"><%= t[1][0].message %></p>
                 </div>

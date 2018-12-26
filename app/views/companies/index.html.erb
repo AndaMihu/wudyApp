@@ -3,7 +3,7 @@
 <!--<h3>Tip: use the filters to make your search faster and easier </h3>-->
 </div>
 
-<div id="students-list">
+<div id="companies-list">
 <table>
   <tr class="cl-title">
     <th>Name</th>
@@ -23,18 +23,16 @@
           <td> <%= company.available_spots - company.students.count %></td>
         <% end %>
 
-    
-      
+
         <% company.position.each do |p| %>
-          <% if p.name.nil? %>
+          <% if p.name.empty? %>
             <td> - </td>
           <% else %>
             <td> <%= p.name %> </td>
           <% end %>
         <% end %> 
 
-     
-
+  
         <% if company.industry_id.nil? %>
          <td> - </td>
         <% else %>
@@ -45,10 +43,9 @@
           <td> - </td>
         <% else %>
          <td> <%= company.city %></td>
-        <% end %>
-
-        
+        <% end %> 
     </tr>
+
     <% end %>
 </table>
 </div>

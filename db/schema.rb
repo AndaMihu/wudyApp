@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_175518) do
+ActiveRecord::Schema.define(version: 2018_12_23_154104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_175518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mobile_phone"
+    t.boolean "accepted", default: false
     t.index ["email"], name: "index_company_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_company_users_on_reset_password_token", unique: true
   end
@@ -90,6 +91,26 @@ ActiveRecord::Schema.define(version: 2018_12_21_175518) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contract_company_user_accepts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "contract_id"
+    t.bigint "company_id"
+    t.boolean "accept", default: false
+    t.index ["company_id"], name: "index_contract_company_user_accepts_on_company_id"
+    t.index ["contract_id"], name: "index_contract_company_user_accepts_on_contract_id"
+  end
+
+  create_table "contract_teacher_accepts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "contract_id"
+    t.bigint "teacher_id"
+    t.boolean "accept", default: false
+    t.index ["contract_id"], name: "index_contract_teacher_accepts_on_contract_id"
+    t.index ["teacher_id"], name: "index_contract_teacher_accepts_on_teacher_id"
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -234,6 +255,11 @@ ActiveRecord::Schema.define(version: 2018_12_21_175518) do
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean "accepted", default: false
+    t.string "good_want"
+    t.string "good_not"
+    t.string "bad_want"
+    t.string "bad_not"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["programme_id"], name: "index_students_on_programme_id"
     t.index ["project_timeline_id"], name: "index_students_on_project_timeline_id"
@@ -269,6 +295,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_175518) do
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean "accepted", default: false
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
     t.index ["university_id"], name: "index_teachers_on_university_id"
@@ -292,6 +319,10 @@ ActiveRecord::Schema.define(version: 2018_12_21_175518) do
   add_foreign_key "company_positions", "companies"
   add_foreign_key "company_positions", "positions"
   add_foreign_key "contact_company_users", "contracts"
+  add_foreign_key "contract_company_user_accepts", "companies"
+  add_foreign_key "contract_company_user_accepts", "contracts"
+  add_foreign_key "contract_teacher_accepts", "contracts"
+  add_foreign_key "contract_teacher_accepts", "teachers"
   add_foreign_key "contracts", "companies"
   add_foreign_key "contracts", "internship_types"
   add_foreign_key "contracts", "students"

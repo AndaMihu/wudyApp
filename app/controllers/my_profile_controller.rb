@@ -21,9 +21,8 @@ class MyProfileController < ApplicationController
     def update
         @student = current_student
         @programmes = Programme.all
-
         if @student.update(student_params)
-            redirect_to root_path
+            redirect_to my_profile_index_path
         else
             render 'edit'
         end

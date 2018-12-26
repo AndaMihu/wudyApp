@@ -1,3 +1,5 @@
+<%#= @contract_student.inspect %>
+
 <div class="st-heading">
 <h1>Contract</h1>
 </div>
@@ -15,9 +17,7 @@
 <p>The student has not completed the contract</p>
     <% else student_signed_in? %>
 <p>You have not created a contract yet</p>
-    <% end %>
-
-<%= link_to "Create new contract", new_contract_path, class:"contract"%>
+<% end %>
 <%else %>
 
 <div id="About" class="tabcontent" style="display:block">  
@@ -142,9 +142,19 @@
 </div>
 
 </div>
+<% if student_signed_in? && current_student.company.nil? %>
+<%= link_to "Create new contract", new_contract_path, class:"contract", class:"btn"%>
+<% end %>
+<% if student_signed_in? && current_student.company.present?%>
+<%= link_to "Contract acceptance status",  acceptance_path, class:"acc-btn" %>
 
-<%= link_to "Contract acceptance status", acceptance_path %>
+<% end %>
 
+<% if teacher_signed_in? && @contract_student.present? %>
+<%= link_to "Contract acceptance status",  contract_acceptance_index_path(@contract_student), class:"acc-btn" %>
+<% elsif company_user_signed_in? %>
+<%= link_to "Contract acceptance status",  contract_acceptance_index_path(@contract_student), class:"acc-btn" %>
+<% end %>
 <script>
 function openCat(evt, catName) {
     var i, tabcontent, tablinks;
