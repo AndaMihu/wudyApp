@@ -2,6 +2,10 @@
 <h1>My profile</h1>
 </div>
 
+<% if teacher_signed_in? && current_teacher.specialization.nil? %>
+<h2>You need to update your profile first</h2>
+<% end %><br>
+
 <div class="one-st"> 
 
 <div class="info">

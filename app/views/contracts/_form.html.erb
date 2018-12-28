@@ -70,7 +70,8 @@
 </div>
 
 <div id="company" class="tabcontent">
-  
+  <h4>Choose the internship company</h4><br><br>
+
   <%= form.collection_select(:company_id, @company, :id, :name, :selected => params[:id]) %>
 
 </div>
@@ -108,7 +109,6 @@
   <th>Work tasks agreed</th>
   <th>Learning goals</th>
   <th>Other comments</th>
-
 </tr>
 
 <tr>
@@ -118,8 +118,8 @@
     <td><%= f.date_select :start_date, placeholder: "Start date" %></td>
     <td><%= f.date_select :end_date, placeholder: "End date" %></td>
     <td><%= f.text_field :weekly_working_hours, placeholder: "Weekly hours per week" %></td>
-    <td><%= f.text_field :work_tasks, placeholder: "Work tasks agreed" %></td>
-    <td><%= f.text_field :learning_goals, placeholder: "Learning goals" %></td>
+    <td><%= f.text_area :work_tasks, placeholder: "Work tasks agreed" %></td>
+    <td><%= f.text_area :learning_goals, placeholder: "Learning goals" %></td>
     <td><%= f.text_area :other_comments, placeholder: "Other comments " %></td>
   <% end %> 
 

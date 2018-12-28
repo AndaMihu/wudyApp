@@ -38,13 +38,16 @@
     
 </div>
 
+
 <div class="contact">
 
 
 <div class="contact-btn">
 <div class="more">Show profile</div>
+<% if teacher_signed_in? %>
 <div class="meeting"> Meetings </div>
 <%= link_to 'Contact', student_chats_path(@student), class:"contact" %>
+<% end %>
 <%= link_to 'Internship contract', student_contracts_path(@student), class:"contract" %>
 </div><br><br>
 

@@ -1,8 +1,9 @@
 class StudentsController < ApplicationController
     def index
         if teacher_signed_in?
+    
         @students = Student.where(teacher_id: current_teacher.id)  
-        #@position = Contract.where(student_id: @students)
+        #@position2 = Contract.where(student_id: @students)
 
         @position = CompanyPosition.all
 
@@ -10,9 +11,12 @@ class StudentsController < ApplicationController
         elsif company_user_signed_in?
         @com = Company.where(company_user: current_company_user.id).pluck(:id).first
 
-        @students = Student.all
+        @company_id = Company.where(company_user_id: current_company_user.id)
+        @interns = Contract.where(company_id: @company_id)
 
-        #@students = Contract.where(company_id: @com)
+        @company_id = Company.where(company_user_id: current_company_user.id)
+        @position = Position.where(company_id: @company_id)
+
         end
         @programme = StudentProgramme.all
         @company = Contract.all 
@@ -26,6 +30,9 @@ class StudentsController < ApplicationController
 
     def show
         @student = Student.find(params[:id])
+
+        @intern = Student.find(params[:id])
+
         @event = Event.where(student_id: @student).first
     end
 

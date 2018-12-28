@@ -3,7 +3,7 @@
 
       def index
         @events = Event.where(teacher_id: current_teacher.id)
-        @student = params[:student_id].to_i
+        #@student = params[:student_id].to_i
       end
     
       def show

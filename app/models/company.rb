@@ -7,10 +7,11 @@ class Company < ApplicationRecord
 
   belongs_to :company_user
   
-  #has_many :positions
+  has_one :position
   
-  has_many :company_position
-  has_many :position, through: :company_position
+  #has_many :company_position
+  #accepts_nested_attributes_for :company_position
+  #has_many :position, through: :company_position
   
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/

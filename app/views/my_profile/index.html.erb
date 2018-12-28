@@ -28,7 +28,13 @@
        <td> <%= current_student.name %> </td>
        <td> <%= current_student.email %></td>
        <td> <%= current_student.mobile_phone %></td>
-       <td><%= image_tag current_student.avatar.url(:thumb) %></td>
+       <td>
+        <% if current_student.avatar.url(:thumb).present? %>
+        <%= image_tag("users.png", alt: "check mark", size: "100x100") %>
+        <% else %>
+        <p class="avatar"> <%= current_student.avatar.url(:thumb) %>
+        <% end %>
+        </td>
   </tr>
 </table>
 
@@ -88,10 +94,9 @@
         <td><%= current_student.bad_not %></td>
 
   </tr> 
-  </table>
 
+  </table>
 </div>
-<!--<p class="cv">Resume:<%#= current_student.interests %></p>NOVOREMUSE-->
 </div>
        
 <%= link_to 'Edit profile', edit_my_profile_path(current_student), :class => "editBtn" %>

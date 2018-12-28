@@ -1,6 +1,7 @@
 class ChatsController < ApplicationController
   def index
     @chats = Chat.all
+    
     if teacher_signed_in?
       
     @test2 = Chat.where(student_id: params[:student_id]).group_by(&:created_at)

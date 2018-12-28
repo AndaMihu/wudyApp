@@ -56,3 +56,15 @@
     padding: 6px 12px;
     border-top: none;
   }
+
+  .acc-btn{
+    @extend %button;
+    background-color:$medium-yellow;
+
+    
+  }
+
+  .new-btn{
+    @extend %button;
+
+  }

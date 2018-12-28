@@ -6,6 +6,10 @@ class ContractsController < ApplicationController
   def index
    @contracts = Contract.all
    @contract_student = Contract.where(student_id: params[:student_id]).first
+   
+   @contract_student2 = Contract.where(student_id: params[:student_id]).pluck(:student_id).first
+   @company_id = Contract.where(student_id: @contract_student2).pluck(:company_id).first
+   @position = Position.where(company_id: @company_id).first
 
   end
 
@@ -13,6 +17,8 @@ class ContractsController < ApplicationController
   # GET /contracts/1.json
   def show
     @contract_student = Contract.where(student_id: params[:student_id]).first
+    @company_id = Contract.where(student_id: @contract_student).pluck(:company_id)
+    @position = Position.where(company_id: 16)
   end
 
   # GET /contracts/new

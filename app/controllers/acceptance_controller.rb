@@ -46,28 +46,23 @@ class AcceptanceController < ApplicationController
 
     def update_bool
 
-
     if teacher_signed_in?
         @accept2 = ContractTeacherAccept.where(teacher_id: current_teacher.id).pluck(:contract_id)
-
         @accept = ContractTeacherAccept.where(teacher_id: current_teacher.id)
-        
+    
         if @accept.update(accept: true)
         redirect_to acceptance_success_path
         end
 
     elsif company_user_signed_in?
         @com = Company.where(company_user: current_company_user.id).pluck(:id).first
-
         #@accept = ContractCompanyUserAccept.where(compan: current_teacher.id).pluck(:contract_id)
-
-
         @accept = ContractCompanyUserAccept.where(company_id: @com)
+
         if @accept.update(accept: true)
         redirect_to acceptance_success_path
         end
-    end
-
+     end
     end
 
 end

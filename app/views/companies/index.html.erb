@@ -1,3 +1,4 @@
+<%#= @position.inspect %>
 <div class="st-heading">
 <h1>Companies list</h1>
 <!--<h3>Tip: use the filters to make your search faster and easier </h3>-->
@@ -8,7 +9,7 @@
   <tr class="cl-title">
     <th>Name</th>
     <th>Available internship spots</th>
-    <th>Position</th>
+    <th>Internship position</th>
     <th>Industry</th>
     <th>Location</th>
   </tr>
@@ -20,30 +21,39 @@
         <% if company.available_spots.nil? %>
           <td> - </td>
         <% else %>
-          <td> <%= company.available_spots - company.students.count %></td>
-        <% end %>
-
-
-        <% company.position.each do |p| %>
-          <% if p.name.empty? %>
-            <td> - </td>
-          <% else %>
-            <td> <%= p.name %> </td>
+          <td> 
+          <% @position=company.available_spots - company.students.count %>
+          <% if @position>0 %>
+          <%= @position %>
+          <% else %> 
+          <p> no more places left </p> 
           <% end %>
-        <% end %> 
+          </td>
+        <% end %>   
 
-  
+        <td>
+        <% if company.position.nil? %>
+         - 
+        <% else %>
+        <%= company.position.name %>
+        <% end %>
+       </td>
+
+        <td>
         <% if company.industry_id.nil? %>
-         <td> - </td>
+         -
         <% else %>
-        <td> <%= company.industry.name %> </td>    
+         <%= company.industry.name %>  
         <% end %>  
+      </td>
 
+      <td>
         <% if company.city.empty? %>
-          <td> - </td>
+         -
         <% else %>
-         <td> <%= company.city %></td>
+         <%= company.city %>
         <% end %> 
+        </td>
     </tr>
 
     <% end %>

@@ -123,7 +123,7 @@
             <li>
                 <span>01</span>
                 <h1>
-                  <%#= link_to "Project timeline", project_timeline_path(@project_timeline) %>
+                  <%= link_to "Project timeline", project_timeline_index_path %>
                 </h1>
             </li>
             <li>
@@ -136,23 +136,15 @@
             <li>    
                 <span>03</span>
                 <h1>
-                
-                    <%= link_to "My profile", my_profile_index_path %>
-                
+                    <% if current_company_user.company.present? %>
+                    <%= link_to "Company profile",  company_path(current_company_user.company) %>
+                    <% else %> 
+                    <%= link_to "Company profile",  root_path %>
+
+                    <% end %>
                 </h1>
             </li>
             
-    
-
-             <li>
-                <span>04</span>
-                <h1> 
-                   
-                    <%= link_to "Company profile", company_profile_index_path %>
-
-                </h1>
-
-            </li>
             
             <br>
 

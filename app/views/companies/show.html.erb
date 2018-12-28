@@ -12,58 +12,112 @@
         <% else %>
         <p class="avatar"> <%= image_tag @company.avatar.url(:medium) %>
         <% end %>
-        <p style="text-transform:capitalize"><%= @company.name %></p>
+        <h2 style="text-transform:capitalize"><%= @company.name %></h2>
 
     </div>
 
         <div class="city">
         <h3>Location</h3>
-            <p style="text-transform:capitalize"><%= @company.city %></p>
+            <p style="text-transform:capitalize">
+            <% if @company.city.empty? %>
+            -
+            <% else %>
+                <%= @company.city %>
+            <% end %>
+            </p>
         </div>
 
         <div class="seats">
         <h3>Internship available seats</h3>
-        <p style="text-transform:capitalize"><%= @company.available_spots %></p>
+            <p style="text-transform:capitalize">
+            <% if @company.available_spots.nil? %>
+            -
+            <% else %>
+            <%= @company.available_spots %>
+            <% end %>
+        </p>
         </div>
 
         <div class="position">
+
         <h3>Internship position</h3>
-        <p style="text-transform:capitalize"><%= @company.position.name %></p>
+
+        <p style="text-transform:capitalize">
+        <% if @position.nil? %>
+        -
+        <% else %>
+        <%= @position %>
+        <%end%>
+
+        </p>
         </div>
 
         <div class="industry">
         <h3>Industry</h3>
-        <p style="text-transform:capitalize"><%= @company.industry.name %></p>
+        <p style="text-transform:capitalize">
+        <% if @company.industry.name.empty? %>
+        -
+        <% else %>
+        <%= @company.industry.name %>
+        <% end %>
+        </p>
         </div>
 
         <div class="website">
         <h3>Website</h3>
-        <p style="text-transform:capitalize"><%= @company.website %></p>
+        <p style="text-transform:capitalize">
+        <% if @company.website.empty? %>
+        - 
+        <% else %>
+        <%= @company.website %>
+        <% end %>
+        </p>
         </div>
 
     </div>
 
     <div class="contact">
         <h3>Company description</h3>
-        <p style="text-transform:capitalize"><%= @company.company_description %></p>
+        <p style="text-transform:capitalize">
+        <% if @company.company_description.nil? %>
+        -
+        <% else %>
+        <%= @company.company_description %>
+        <% end %>
+        </p>
 
         <h3>Number of employees</h3>
-        <p style="text-transform:capitalize"><%= @company.employees_number %></p>
+        <p style="text-transform:capitalize">
+        <% if @company.employees_number.nil? %>
+        - 
+        <% else %>
+        <%= @company.employees_number %>
+        <% end %>
+        </p>
 
         <h3>Internship description</h3>
-        <p style="text-transform:capitalize"><%= @company.internship_description %></p>
+        <p style="text-transform:capitalize">
+        <% if @company.internship_description.nil? %>
+        -
+        <% else %>
+        <%= @company.internship_description %>
+        <% end %>
+        </p>
 
         <h3>Number of previous interns</h3>
         <p style="text-transform:capitalize"><%= @allInterns %></p>
 
+<% if student_signed_in? %>
     <div class="apply">
-        <a id="mail" class="btn" href="mailto:markus@vonobelitz.com">Apply now</a>
+        <a id="mail" class="btn" href="mailto:company@email.com">Apply now</a>
     </div>
-
-    </div>
-
-<% if company_user_signed_in? %>
-<%= link_to "Edit company details", edit_company_path(@company) %>
 <% end %>
+    </div>
 
 </div> 
+
+<div class="comp-btn">
+<% if company_user_signed_in? %>
+<%= link_to "Edit company details", edit_company_path(@company), class:"btn-comp"  %>
+<% end %>
+<div>

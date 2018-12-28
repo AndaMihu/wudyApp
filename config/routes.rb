@@ -64,12 +64,12 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: 'frontpage#index'
   get '/student_dashboard' => 'student_dashboard#index'
 
 
   patch '/my_profile/update' => 'my_profile#update'
-
   get '/my_profile/success' => 'my_profile#success'
   get '/my_profile/error' => 'my_profile#error'
 

@@ -31,3 +31,15 @@ table{
 .city, .seats, .position, .industry {
     border-bottom: 1px solid #bfc0c1;
 }
+
+.comp-btn{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-left: 30%;
+.btn-comp{
+    @extend %button;
+    width:20%;
+    background-color: $light-orange;
+}
+}

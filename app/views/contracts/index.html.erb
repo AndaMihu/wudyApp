@@ -1,4 +1,4 @@
-<%#= @contract_student.inspect %>
+<%#= @position.inspect %>
 
 <div class="st-heading">
 <h1>Contract</h1>
@@ -113,12 +113,14 @@
 <div id="Agreement" class="tabcontent">  
     <table>
     <tr class="cl-title">
+        <th>Internship position</th>
         <th>Start date</th>
         <th>End date </th>
         <th>Weekly hours per week</th>
     </tr>
 
     <tr>
+    <td><%= @position.name %></td>
     <td><%= @contract_student.internship_agreement.start_date %></td>
     <td><%= @contract_student.internship_agreement.end_date %></td>
     <td><%= @contract_student.internship_agreement.weekly_working_hours %></td>
@@ -142,12 +144,13 @@
 </div>
 
 </div>
-<% if student_signed_in? && current_student.company.nil? %>
-<%= link_to "Create new contract", new_contract_path, class:"contract", class:"btn"%>
-<% end %>
-<% if student_signed_in? && current_student.company.present?%>
-<%= link_to "Contract acceptance status",  acceptance_path, class:"acc-btn" %>
+<% if student_signed_in? %>
+<% if current_student.company.nil? %>
+<%= link_to "Create new contract", new_contract_path, class:"contract", class:"new-btn"%>
+<% else  %>
 
+<%= link_to "Contract acceptance status",  acceptance_path, class:"acc-btn" %>
+<% end %>
 <% end %>
 
 <% if teacher_signed_in? && @contract_student.present? %>

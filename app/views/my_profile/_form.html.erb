@@ -22,45 +22,45 @@
   <% end %><br>
 
   <% if current_student.education.nil? %>
-  <%= form.text_field :education, placeholder: "Education" %>
+  <%= form.text_area :education, placeholder: "Education history" %>
   <% else %>
-  <%= form.text_field :education, value: current_student.education %>
+  <%= form.text_area :education, value: current_student.education %>
   <% end %><br>
 
  <h1>Work experience</h1>
 
   <% if current_student.work_experience.nil? %>
-  <%= form.text_field :work_experience, placeholder: "Work experience" %>
+  <%= form.text_area :work_experience, placeholder: "Work experience" %>
   <% else %>
-  <%= form.text_field :work_experience, value: current_student.work_experience %>
+  <%= form.text_area :work_experience, value: current_student.work_experience %>
   <% end %><br>
   
 
   <% if current_student.volunteer_experience.nil? %>
-  <%= form.text_field :volunteer_experience, placeholder: "Volunteer experience" %>
+  <%= form.text_area :volunteer_experience, placeholder: "Volunteer experience" %>
   <% else %>
-  <%= form.text_field :volunteer_experience, value: current_student.volunteer_experience %>
+  <%= form.text_area :volunteer_experience, value: current_student.volunteer_experience %>
   <% end %><br>
 
   <h1>Skills</h1>
 
   <% if current_student.hard_skills.nil? %>
-  <%= form.text_field :hard_skills, placeholder: "Hard skills" %>
+  <%= form.text_area :hard_skills, placeholder: "Hard skills" %>
   <% else %>
-  <%= form.text_field :hard_skills, value: current_student.hard_skills %>
+  <%= form.text_area :hard_skills, value: current_student.hard_skills %>
   <% end %><br>
 
 
   <% if current_student.soft_skills.nil? %>
-  <%= form.text_field :soft_skills, placeholder: "Soft skills" %>
+  <%= form.text_area :soft_skills, placeholder: "Soft skills" %>
   <% else %>
-  <%= form.text_field :soft_skills, value: current_student.soft_skills %>
+  <%= form.text_area :soft_skills, value: current_student.soft_skills %>
   <% end %><br>
  
   <% if current_student.interests.nil? %>
-  <%= form.text_field :interests, placeholder: "Interests" %>
+  <%= form.text_area :interests, placeholder: "Interests" %>
   <% else %>
-  <%= form.text_field :interests, value: current_student.interests %>
+  <%= form.text_area :interests, value: current_student.interests %>
   <% end %><br>
 
 <h1>Tasks </h1>
@@ -99,14 +99,7 @@
   <%= form.label :name, 'Profile picture' %><br>
   <%= image_tag current_student.avatar.url(:medium) %>
   <%= form.file_field :avatar %>
-  <% end %><br>
-
-
-   <div class="field">
-    <%= form.label :name, 'Resume' %><br>
-    <%= form.file_field :cv%>
-  </div>
-
+  <% end %><br><br>
 
   <div class="actions">
     <%= form.submit %>

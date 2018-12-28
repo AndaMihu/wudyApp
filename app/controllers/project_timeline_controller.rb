@@ -9,7 +9,7 @@ class ProjectTimelineController < ApplicationController
     end
 
     def show
-        @project_timeline = ProjectTimeline.find(params[:id])
+        #@project_timeline = ProjectTimeline.find(params[:id])
     end 
 
     def create 

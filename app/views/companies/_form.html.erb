@@ -1,9 +1,18 @@
+<%#= @company.inspect %>
 <%= form_with(model: company, local: true) do |form| %>
 
 <div id="company-info" >
-    <h3>Company info </h3>
+    <h3>Company info </h3><br>
 
+  <% if @company.name.nil? %>
   <%= form.text_field :name, placeholder: "Company name" %><br>
+  <% else %>
+  <%= form.text_field :name, value: @company.name %>
+  <% end %><br>
+
+  <%= form.label :industry %><br>
+
+  <%= form.collection_select(:industry_id, @industry, :id, :name, :selected => params[:id]) %><br><br>
 
   <%= form.text_field :cvr, placeholder: "CVR" %><br>
 
@@ -25,7 +34,7 @@
   </div>
 
 <div id="internship-info" >
-    <h3>Internship info </h3>
+    <h3>Internship info </h3><br>
 
  <%= form.text_field :internship_description, placeholder: "Internship description" %>
 
@@ -34,10 +43,6 @@
 <% end %>
 
 <%= form.text_field :available_spots, placeholder: "Available spots" %><br>
-
-<%= form.label :industry %><br>
-
-<%= form.collection_select(:industry_id, @industry, :id, :name, :selected => params[:id]) %>
 
 
 </div>

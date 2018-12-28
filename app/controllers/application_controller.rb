@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
         when Student
             student_dashboard_path
         when Teacher
+            if current_teacher.specialization.nil?
+            teacher_path(current_teacher)
+            else
             students_path
+            end
         when CompanyUser
             if current_company_user.company.nil?
             new_company_path

@@ -101,9 +101,11 @@
         <th>Start date</th>
         <th>End date </th>
         <th>Weekly hours per week</th>
+            
     </tr>
 
     <tr>
+    <td><%= @contract_student.company.position.name %></td>
     <td><%= @contract_student.internship_agreement.start_date %></td>
     <td><%= @contract_student.internship_agreement.end_date %></td>
     <td><%= @contract_student.internship_agreement.weekly_working_hours %></td>
@@ -121,6 +123,7 @@
     <td><%= @contract_student.internship_agreement.work_tasks %></td>
     <td><%= @contract_student.internship_agreement.learning_goals %></td>
     <td><%= @contract_student.internship_agreement.other_comments %></td>
+
     </tr>
     </table>
 

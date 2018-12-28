@@ -1,23 +1,29 @@
-<%#= @position.inspect %>
 <div class="st-heading">
 <h1>Students list</h1>
 <!--<h3>Tip: use the filters to make your search faster and easier </h3>-->
 </div>
+
+<% if teacher_signed_in? && @students.empty? %>
+<h2> You have no students assigned yet </h2>
+<% end %> 
+
+<% if company_user_signed_in? && @intern.empty? %>
+<h2> You have no interns assigned yet </h2>
+
+<% end %><br>
 
 <div id="students-list">
 <table>
   <tr class="cl-title">
     <th>Name</th>
     <th>Email</th>
+    <th>University</th>
     <th>Study programme</th>
-    <th>Internship company</th>
-    <th>Internship position</th>
-    <th>Meetings</th>
+    <th> Meetings </th>
   </tr>
 
-<% if @students.empty? %>
-<!--<p> You have no students assigned yet </p>-->
-<% else %>
+<% if teacher_signed_in? %>
+
 <% @students.each do |student| %>
     <tr>
      <% if student.name.nil? %>
@@ -40,20 +46,7 @@
           <td> <%= student.company.name %></td>
         <% end %>
 
-    <%# @position.each do |p| %>
-          <%# if p.position.name.empty? %>
-           <!-- <td> - </td>-->
-          <%# else %>
-            <td> <%#= p.company.position.name %> </td>
-          <%# end %>
-        <%# end %> 
-<!--
-        <%# if student.position_id.nil? %>
-          <td> - </td>
-        <%# else %>
-          <td> <%#= student.position_id %></td>
-        <%# end %>
--->
+
         <% if student.event.nil? %>
           <td> not meetings yet </td>
         <% else %>
@@ -63,6 +56,38 @@
         
     </tr>
     <% end %>
+  </table>
+
+  <% else company_user_signed_in? %>
+
+<% if @interns.empty? %>
+<p> You have no interns yet </p>
+<% else %>
+<% @interns.each do |intern| %>
+    <tr>
+     <% if intern.student.name.nil? %>
+         <td> - </td>
+        <% else %>
+        <td class="st-name"><%= link_to intern.student.name, intern.student %> </td>
+        <% end %>
+
+        <td> <%= intern.student.email %></td>
+        <td>KEA-Copenhagen School of Design and Technology</td>
+        <% if intern.student.programme_id.nil? %>
+         <td> - </td>
+        <% else %>
+          <td> <%= intern.student.programme.name %></td>
+        <% end %>
+      
+
+    <% @position.each do |p| %>
+            <td> <%= p.name %> </td>
+    <% end %> 
+
+        
+    </tr>
+    <% end %>
 </table>
+<% end %>
 <% end %>
 </div>
